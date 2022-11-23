@@ -46,7 +46,6 @@ const Logo = styled.figure`
 
 const SearchBox = styled.div`
   position: relative;
-
   input {
     width: 375px;
     height: 54px;
