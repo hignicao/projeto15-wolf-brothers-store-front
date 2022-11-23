@@ -1,4 +1,4 @@
- import Slider from "react-slick";
+import Slider from "react-slick";
 import React from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -24,7 +24,7 @@ export default function ImageSlider() {
       <Slider {...settings}>
         {images.map((item, index) => (
           <ImageContainer key={index}>
-            <img src={item.src} alt="plaid shirt"/>
+            <img src={item.src} alt="plaid shirt" />
           </ImageContainer>
         ))}
       </Slider>
@@ -41,4 +41,3 @@ const ImageContainer = styled.div`
     height: auto;
   }
 `;
- 
