@@ -11,8 +11,9 @@ function getProducts() {
   const promise = axios.get(`${BASE_URL}/products`);
   return promise;
 }
-function getFilteredProducts() {
-  const promise = axios.get(`${BASE_URL}/products/filter`);
+function getFilteredProducts(name) {
+  const promise = axios.get(`${BASE_URL}/products/filter/${name}`);
+  return promise;
 }
 const api = {
   getProducts,

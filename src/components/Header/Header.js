@@ -6,8 +6,25 @@ import {
   IoHeartSharp,
   IoBag,
 } from "react-icons/io5";
+import { useState } from "react";
+import api from "../../services/api";
 
 export default function Header() {
+  const [filteredItens, setFilteredItens] = useState(null);
+
+  async function handleProductSearch(e) {
+    const value = e.target.value;
+    if (value.split(" ").join("").length >= 2) {
+      try {
+        const response = await api.getFilteredProducts(value);
+        console.log(response, "PRODUTO");
+        setFilteredItens(response.data.filteredProducts);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }
+  console.log(filteredItens, "produto");
   return (
     <Container>
       <Logo>
@@ -18,7 +35,11 @@ export default function Header() {
       <span>WOMEN</span>
       <span>THE BRAND</span>
       <SearchBox>
-        <input type="text" placeholder="search product" />
+        <input
+          type="text"
+          placeholder="search product"
+          onChange={handleProductSearch}
+        />
         <IoSearch />
       </SearchBox>
       <IconBox>
@@ -57,7 +78,7 @@ const Logo = styled.figure`
 const SearchBox = styled.div`
   position: relative;
   input {
-    width:200px;
+    width: 200px;
     height: 54px;
     border-radius: 25px;
     background: #d9d9d9;

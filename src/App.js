@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import GlobalStyle from "./style/GlobalStyle";
 
 function App() {
+  console.log("aaaaap")
   return (
     <BrowserRouter>
       <GlobalStyle />
