@@ -34,6 +34,9 @@ const Container = styled.header`
   align-items: center;
   justify-content: space-between;
   padding: 0 80px;
+  position: fixed;
+  top:0;
+  z-index:2;
 `;
 const Logo = styled.figure`
   width: 165px;

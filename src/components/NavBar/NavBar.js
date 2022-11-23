@@ -12,11 +12,15 @@ export default function NavBar() {
 }
 
 const Container = styled.section`
+  position: fixed;
+  top: 180px;
   width: 100vw;
   height: 130px;
   border-bottom: 1px solid #000f21;
-  display:flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 240px;
+  z-index: 2;
+  background-color: #ffffff;
 `;

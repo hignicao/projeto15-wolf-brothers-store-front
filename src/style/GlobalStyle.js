@@ -49,6 +49,10 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+body{
+    margin-top: 310px;
+    width:100vw;
+}
 *{
     box-sizing: border-box;
 }
