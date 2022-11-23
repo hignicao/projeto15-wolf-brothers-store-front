@@ -50,7 +50,7 @@ table {
 	border-spacing: 0;
 }
 body{
-    margin-top: 310px;
+    margin-top: 100px;
     width:100vw;
 }
 *{

@@ -13,6 +13,10 @@ export default function Header() {
       <Logo>
         <img src={logo} alt="logo" />
       </Logo>
+      <span>HOME</span>
+      <span>MEN</span>
+      <span>WOMEN</span>
+      <span>THE BRAND</span>
       <SearchBox>
         <input type="text" placeholder="search product" />
         <IoSearch />
@@ -28,15 +32,18 @@ export default function Header() {
 
 const Container = styled.header`
   width: 100vw;
-  height: 180px;
+  height: 100px;
   background: #000f21;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 80px;
   position: fixed;
-  top:0;
-  z-index:2;
+  top: 0;
+  z-index: 2;
+  span {
+    color: #d9d9d9;
+  }
 `;
 const Logo = styled.figure`
   width: 165px;
@@ -50,7 +57,7 @@ const Logo = styled.figure`
 const SearchBox = styled.div`
   position: relative;
   input {
-    width: 375px;
+    width:200px;
     height: 54px;
     border-radius: 25px;
     background: #d9d9d9;
