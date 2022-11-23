@@ -2,14 +2,14 @@ import styled from "styled-components";
 import { BsCart4 } from "react-icons/bs";
 import CartButton from "../../components/CartButton/CartButton";
 
-export default function Product() {
+export default function Product({ imgURL, name, price, id, type }) {
   return (
     <Container>
       <Image>
-        <img src="https://static.netshoes.com.br/produtos/camisa-xadrez-new-era-united-in-sport-manga-longa-masculina/60/IJX-7258-060/IJX-7258-060_zoom1.jpg?ts=1585153093" />
+        <img src={imgURL} alt={name}/>
       </Image>
-      <Title>Plaid Shirt</Title>
-      <span>R$ 82,70</span>
+      <Title>{name}</Title>
+      <span>{price}</span>
       <CartButton>
         <BsCart4 />
         Add to cart
@@ -26,7 +26,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  margin:0 0 15px 10px;
+  margin: 0 0 15px 10px;
 `;
 
 const Image = styled.figure`

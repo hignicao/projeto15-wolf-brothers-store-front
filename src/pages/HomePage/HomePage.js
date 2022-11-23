@@ -1,9 +1,32 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
-import images from "./images";
+import Loader from "../../components/Loader/Loader";
+import api from "../../services/api";
 import ImageSlider from "./ImageSlider";
 import Product from "./Product";
 
 export default function HomePage() {
+  const [products, setProducts] = useState(null);
+
+  useEffect(() => {
+    api
+      .getProducts()
+      .then((res) => {
+        console.log(res);
+        setProducts(res.data.products);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  if (!products) {
+    return (
+      <Container>
+        <Loader />
+      </Container>
+    );
+  }
   return (
     <Container>
       <div>
@@ -11,22 +34,16 @@ export default function HomePage() {
       </div>
       <h1>PRODUCTS IN STOCK</h1>
       <ProductsContainer>
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
+        {products.map((product) => (
+          <Product
+            key={product._id}
+            imgURL={product.imgURL}
+            name={product.name}
+            price={product.price}
+            id={product._id}
+            type={product.type}
+          />
+        ))}
       </ProductsContainer>
     </Container>
   );
