@@ -15,9 +15,15 @@ function getFilteredProducts(name) {
   const promise = axios.get(`${BASE_URL}/products/filter/${name}`);
   return promise;
 }
+
+function getSelectedProduct(id){
+    const promise =axios.get(`${BASE_URL}/products/${id}`);
+    return promise;
+}
 const api = {
   getProducts,
   getFilteredProducts,
+  getSelectedProduct
 };
 
 export default api;

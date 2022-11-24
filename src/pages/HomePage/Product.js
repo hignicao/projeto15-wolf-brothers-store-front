@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { BsCart4 } from "react-icons/bs";
 import Button from "../../components/CartButton/Button";
-import { Link } from "react-router-dom";
+import StyledLink from "../../components/StyledLink/StyledLink";
+
 
 export default function Product({ imgURL, name, price, id, type }) {
   return (
-    <Link to={`/product/${id}`}>
+    <StyledLink to={`/product/${id}`}>
       <Container>
         <Image>
           <img src={imgURL} alt={name} />
@@ -17,7 +18,7 @@ export default function Product({ imgURL, name, price, id, type }) {
           Add to cart
         </Button>
       </Container>
-    </Link>
+    </StyledLink>
   );
 }
 const Container = styled.div`

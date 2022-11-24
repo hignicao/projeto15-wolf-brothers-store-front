@@ -1,7 +1,12 @@
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import Button from "../../components/CartButton/Button";
 import ButtonsContainer from "./ButtonsContainer";
+
 export default function SelectedProductPage() {
+  const { productId } = useParams();
+
+  console.log(productId);
   return (
     <Container>
       <ProductContainer>
