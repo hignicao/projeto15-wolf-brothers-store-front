@@ -1,24 +1,39 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import Loader from "../../components/Loader/Loader";
+import api from "../../services/api";
 import ButtonsContainer from "./ButtonsContainer";
 
 export default function SelectedProductPage() {
+  const [product, setProduct] = useState(null);
   const { productId } = useParams();
-
-  console.log(productId);
+  useEffect(() => {
+    api
+      .getSelectedProduct(productId)
+      .then((res) => setProduct(res.data.product))
+      .catch((err) => console.log(err));
+  }, []);
+console.log(product)
+  if (!product) {
+    return (
+      <Container>
+        <Loader />
+      </Container>
+    );
+  }
   return (
     <Container>
       <ProductContainer>
         <Left>
-          <img src="" />
+          <img src={product.imgURL} />
         </Left>
         <Right>
-          <h1>Plaid shirt</h1>
+          <h1>{product.name}</h1>
           <Description>
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+           {product.type}
           </Description>
-          <span>R$ 80,00</span>
+          <span>{product.price}</span>
           <ButtonsContainer />
         </Right>
       </ProductContainer>
