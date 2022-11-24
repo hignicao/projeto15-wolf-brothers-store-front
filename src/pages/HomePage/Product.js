@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { BsCart4 } from "react-icons/bs";
-import Button from "../../components/CartButton/Button";
+import Button from "../../components/Button/Button";
 import StyledLink from "../../components/StyledLink/StyledLink";
 
 

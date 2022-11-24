@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Button from "../../components/CartButton/Button";
+import Button from "../../components/Button/Button";
 import { BsCart4 } from "react-icons/bs";
 
 export default function ButtonsContainer() {
