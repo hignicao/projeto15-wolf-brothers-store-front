@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-const CartButton = styled.button`
-  width: 230px;
-  height: 45px;
+const Button = styled.button`
+  width:${props=>props.width};
+  height: ${props=>props.height};
   border: 1px solid black;
   background-color: black;
   color: #ffffff;
@@ -19,4 +19,4 @@ const CartButton = styled.button`
   }
 `;
 
-export default CartButton;
+export default Button;

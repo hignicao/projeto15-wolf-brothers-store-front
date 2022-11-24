@@ -18,6 +18,7 @@ export default function Header() {
       try {
         const response = await api.getFilteredProducts(value);
         console.log(response, "PRODUTO");
+
         setFilteredItens(response.data.filteredProducts);
       } catch (err) {
         console.log(err);

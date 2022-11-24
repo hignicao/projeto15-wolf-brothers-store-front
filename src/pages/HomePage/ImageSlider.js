@@ -10,7 +10,7 @@ export default function ImageSlider() {
     className: "slider variable-width",
     infinite: true,
     dots: true,
-    slidesToShow: 3,
+    slidesToShow: 1,
     slidesToScroll: 1,
     lazyLoad: true,
     autoplay: true,
@@ -32,7 +32,7 @@ export default function ImageSlider() {
   );
 }
 const SliderContainer = styled.section`
-  width: 50vw;
+  width: 100vw;
 `;
 
 const ImageContainer = styled.div`

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { BsCart4 } from "react-icons/bs";
-import CartButton from "../../components/CartButton/CartButton";
+import Button from "../../components/CartButton/Button";
 
 export default function Product({ imgURL, name, price, id, type }) {
   return (
@@ -10,14 +10,13 @@ export default function Product({ imgURL, name, price, id, type }) {
       </Image>
       <Title>{name}</Title>
       <span>{price}</span>
-      <CartButton>
+      <Button width={"230px"} height={"45px"}>
         <BsCart4 />
         Add to cart
-      </CartButton>
+      </Button>
     </Container>
   );
 }
-
 const Container = styled.div`
   width: 275px;
   height: 400px;
