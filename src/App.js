@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/Header/Header";
 import HomePage from "./pages/HomePage/HomePage";
+import SelectedProductPage from "./pages/SelectedProductPage/SelectedProductPage";
 import GlobalStyle from "./style/GlobalStyle";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/product/:productId" element={<SelectedProductPage/>}/>
       </Routes>
     </BrowserRouter>
   );

@@ -8,6 +8,8 @@ import {
 } from "react-icons/io5";
 import { useState } from "react";
 import api from "../../services/api";
+import StyledLink from "../StyledLink/StyledLink";
+import MaleProducts from "./MaleProducts";
 
 export default function Header() {
   const [filteredItens, setFilteredItens] = useState(null);
@@ -18,6 +20,7 @@ export default function Header() {
       try {
         const response = await api.getFilteredProducts(value);
         console.log(response, "PRODUTO");
+
         setFilteredItens(response.data.filteredProducts);
       } catch (err) {
         console.log(err);
@@ -30,9 +33,14 @@ export default function Header() {
       <Logo>
         <img src={logo} alt="logo" />
       </Logo>
-      <span>HOME</span>
-      <span>MEN</span>
-      <span>WOMEN</span>
+      <StyledLink to="/">
+        <span>HOME</span>
+      </StyledLink>
+      <ShowList>
+        MEN
+        <MaleProducts />
+      </ShowList>
+      <ShowList>WOMEN</ShowList>
       <span>THE BRAND</span>
       <SearchBox>
         <input
@@ -103,5 +111,20 @@ const IconBox = styled.div`
   svg {
     font-size: 30px;
     color: #d9d9d9;
+  }
+`;
+const ShowList = styled.span`
+  position: relative;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  ul {
+    display: none;
+    :hover {
+      display: block;
+    }
+  }
+  :hover ul {
+    display: block;
   }
 `;
