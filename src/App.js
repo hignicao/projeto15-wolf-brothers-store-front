@@ -12,7 +12,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/product" element={<SelectedProductPage/>}/>
+        <Route path="/product/:productId" element={<SelectedProductPage/>}/>
       </Routes>
     </BrowserRouter>
   );

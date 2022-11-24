@@ -1,20 +1,23 @@
 import styled from "styled-components";
 import { BsCart4 } from "react-icons/bs";
 import Button from "../../components/CartButton/Button";
+import { Link } from "react-router-dom";
 
 export default function Product({ imgURL, name, price, id, type }) {
   return (
-    <Container>
-      <Image>
-        <img src={imgURL} alt={name}/>
-      </Image>
-      <Title>{name}</Title>
-      <span>{price}</span>
-      <Button width={"230px"} height={"45px"}>
-        <BsCart4 />
-        Add to cart
-      </Button>
-    </Container>
+    <Link to={`/product/${id}`}>
+      <Container>
+        <Image>
+          <img src={imgURL} alt={name} />
+        </Image>
+        <Title>{name}</Title>
+        <span>{price}</span>
+        <Button width={"230px"} height={"45px"}>
+          <BsCart4 />
+          Add to cart
+        </Button>
+      </Container>
+    </Link>
   );
 }
 const Container = styled.div`
