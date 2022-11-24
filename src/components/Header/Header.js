@@ -8,6 +8,7 @@ import {
 } from "react-icons/io5";
 import { useState } from "react";
 import api from "../../services/api";
+import StyledLink from "../StyledLink/StyledLink";
 
 export default function Header() {
   const [filteredItens, setFilteredItens] = useState(null);
@@ -31,7 +32,9 @@ export default function Header() {
       <Logo>
         <img src={logo} alt="logo" />
       </Logo>
-      <span>HOME</span>
+     <StyledLink to="/">
+     <span>HOME</span>
+     </StyledLink>
       <span>MEN</span>
       <span>WOMEN</span>
       <span>THE BRAND</span>
