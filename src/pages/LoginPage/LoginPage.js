@@ -56,7 +56,7 @@ export default function LoginPage() {
 						{disabled ? loader : "LOGIN"}
 					</ButtonItem>
 				</Form>
-				<LinkText to={"/cadastro"}>
+				<LinkText to={"/signup"}>
 					FIRST TIME? REGISTER NOW!
 				</LinkText>
 			</LoginPageContainer>
