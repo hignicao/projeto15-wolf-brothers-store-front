@@ -62,11 +62,11 @@ const Container = styled.main`
   }
 `;
 const ProductsContainer = styled.section`
-  width: 1180px;
-  height: 1160px;
-  background: #f5f5f5;
+  width: 90%;
+  height: 1000px;
   display: flex;
   flex-wrap: wrap;
-  padding: 15px;
+  justify-content: space-around;
+  padding: 15px 0;
   overflow: hidden;
 `;

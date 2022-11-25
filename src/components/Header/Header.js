@@ -10,6 +10,7 @@ import { useState } from "react";
 import api from "../../services/api";
 import StyledLink from "../StyledLink/StyledLink";
 import MaleProducts from "./MaleProducts";
+import FemaleProducts from "./FemaleProducts";
 
 export default function Header() {
   const [filteredItens, setFilteredItens] = useState(null);
@@ -40,7 +41,9 @@ export default function Header() {
         MEN
         <MaleProducts />
       </ShowList>
-      <ShowList>WOMEN</ShowList>
+      <ShowList>WOMEN
+        <FemaleProducts/>
+      </ShowList>
       <span>THE BRAND</span>
       <SearchBox>
         <input
