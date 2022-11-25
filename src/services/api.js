@@ -25,12 +25,18 @@ function login(loginForm) {
 	return promise;
 }
 
+function register(registerForm) {
+	const promise = axios.post(`${BASE_URL}/signup`, registerForm)
+	return promise
+}
+
 const api = {
 	createConfig,
 	getProducts,
 	getFilteredProducts,
 	getSelectedProduct,
 	login,
+	register
 };
 
 export default api;
