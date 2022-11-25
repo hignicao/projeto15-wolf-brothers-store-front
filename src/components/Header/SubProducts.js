@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import StyledLink from "../StyledLink/StyledLink";
 
 export default function SubProducts({ gender }) {
   if (gender === "women") {
@@ -13,7 +14,10 @@ export default function SubProducts({ gender }) {
   } else if (gender === "men") {
     return (
       <Container>
-        <li>JEAN</li>
+        <StyledLink to="/signin">
+          <li>JEAN</li>
+        </StyledLink>
+
         <li>POLO</li>
         <li>BLAZER</li>
         <li>T-SHIRTS</li>

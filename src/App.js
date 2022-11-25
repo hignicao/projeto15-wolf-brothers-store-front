@@ -8,21 +8,21 @@ import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import { UserProvider } from "./providers/UserData";
 
 function App() {
-	console.log("aaaaap");
-	return (
-		<UserProvider>
-			<GlobalStyle />
-			<BrowserRouter>
-				<Header />
-				<Routes>
-					<Route path="/" element={<HomePage />} />
-					<Route path="/product/:productId" element={<SelectedProductPage />} />
-					<Route path="/signin" element={<LoginPage />} />
-					<Route path="/signup" element={<RegistrationPage />} />
-				</Routes>
-			</BrowserRouter>
-		</UserProvider>
-	);
+  console.log("aaaaap");
+  return (
+    <UserProvider>
+      <GlobalStyle />
+      <BrowserRouter>
+       <Header/> 
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/product/:productId" element={<SelectedProductPage />} />
+          <Route path="/signin" element={<LoginPage />} />
+          <Route path="/signup" element={<RegistrationPage />} />
+        </Routes>
+      </BrowserRouter>
+    </UserProvider>
+  );
 }
 
 export default App;

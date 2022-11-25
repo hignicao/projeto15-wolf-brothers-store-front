@@ -1,20 +1,28 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import BlackScreen from "../../components/BlackScreen/BlackScreen";
 import Loader from "../../components/Loader/Loader";
+import { UserContext } from "../../providers/UserData";
 import api from "../../services/api";
 import ButtonsContainer from "./ButtonsContainer";
 
 export default function SelectedProductPage() {
   const [product, setProduct] = useState(null);
+  const { setShowResult, showResult } = useContext(UserContext);
+
+  useEffect(() => {
+    setShowResult(false);
+  }, []);
+
   const { productId } = useParams();
   useEffect(() => {
     api
       .getSelectedProduct(productId)
       .then((res) => setProduct(res.data.product))
       .catch((err) => console.log(err));
-  }, []);
-console.log(product)
+  }, [productId]);
+  console.log(product);
   if (!product) {
     return (
       <Container>
@@ -30,13 +38,12 @@ console.log(product)
         </Left>
         <Right>
           <h1>{product.name}</h1>
-          <Description>
-           {product.type}
-          </Description>
+          <Description>{product.type}</Description>
           <span>{product.price}</span>
           <ButtonsContainer />
         </Right>
       </ProductContainer>
+      {showResult && <BlackScreen onClick={() => setShowResult(false)} />}
     </Container>
   );
 }
