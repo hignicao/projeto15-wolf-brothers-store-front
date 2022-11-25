@@ -22,14 +22,14 @@ export default function Product({ imgURL, name, price, id, type }) {
   );
 }
 const Container = styled.div`
-  width: 275px;
+  width:290px;
   height: 400px;
-  background: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  margin: 0 0 15px 10px;
+  margin-bottom:20px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 `;
 
 const Image = styled.figure`

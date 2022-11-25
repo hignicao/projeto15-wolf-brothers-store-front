@@ -1,28 +1,43 @@
 import styled from "styled-components";
+import StyledLink from "../StyledLink/StyledLink";
 
 export default function SubProducts({ gender }) {
-	return (
-		<Container>
-			<li>JEAN</li>
-			<li>POLO</li>
-			<li>BLAZER</li>
-			<li>T-SHIRTS</li>
-			<li>ACCESSORIES</li>
-		</Container>
-	);
+  if (gender === "women") {
+    return (
+      <Container>
+        <li>OVERALLS</li>
+        <li>COATS</li>
+        <li>DRESSES</li>
+        <li>T-SHIRTS</li>
+      </Container>
+    );
+  } else if (gender === "men") {
+    return (
+      <Container>
+        <StyledLink to="/signin">
+          <li>JEAN</li>
+        </StyledLink>
+
+        <li>POLO</li>
+        <li>BLAZER</li>
+        <li>T-SHIRTS</li>
+        <li>ACCESSORIES</li>
+      </Container>
+    );
+  }
 }
 
 const Container = styled.ul`
-	width: 210px;
-	height: auto;
-	padding: 10px 0 0 10px;
-	background-color: #000000;
-	position: absolute;
-	top: 60px;
-	left: -10px;
-	li {
-		margin-bottom: 15px;
-		color: gray;
-		letter-spacing: 1px;
-	}
+  width: 210px;
+  height: auto;
+  padding: 10px 0 0 10px;
+  background-color: #000000;
+  position: absolute;
+  top: 60px;
+  left: -10px;
+  li {
+    margin-bottom: 15px;
+    color: gray;
+    letter-spacing: 1px;
+  }
 `;

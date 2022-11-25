@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
+import BlackScreen from "../../components/BlackScreen/BlackScreen";
 import Loader from "../../components/Loader/Loader";
+import { UserContext } from "../../providers/UserData";
 import api from "../../services/api";
 import ImageSlider from "./ImageSlider";
 import Product from "./Product";
 
 export default function HomePage() {
   const [products, setProducts] = useState(null);
-
+  const { setShowResult, showResult } = useContext(UserContext);
   useEffect(() => {
     api
       .getProducts()
@@ -28,24 +30,27 @@ export default function HomePage() {
     );
   }
   return (
-    <Container>
-      <div>
-        <ImageSlider />
-      </div>
-      <h1>PRODUCTS IN STOCK</h1>
-      <ProductsContainer>
-        {products.map((product) => (
-          <Product
-            key={product._id}
-            imgURL={product.imgURL}
-            name={product.name}
-            price={product.price}
-            id={product._id}
-            type={product.type}
-          />
-        ))}
-      </ProductsContainer>
-    </Container>
+    <>
+      <Container>
+        <div>
+          <ImageSlider />
+        </div>{" "}
+        <h1>PRODUCTS IN STOCK</h1>
+        <ProductsContainer>
+          {products.map((product) => (
+            <Product
+              key={product._id}
+              imgURL={product.imgURL}
+              name={product.name}
+              price={product.price}
+              id={product._id}
+              type={product.type}
+            />
+          ))}
+        </ProductsContainer>
+        {showResult && <BlackScreen onClick={() => setShowResult(false)} />}
+      </Container>
+    </>
   );
 }
 
@@ -54,6 +59,7 @@ const Container = styled.main`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
   h1 {
     color: #000f21;
     font-size: 50px;
@@ -62,11 +68,11 @@ const Container = styled.main`
   }
 `;
 const ProductsContainer = styled.section`
-  width: 1180px;
-  height: 1160px;
-  background: #f5f5f5;
+  width: 90%;
+  height: 1000px;
   display: flex;
   flex-wrap: wrap;
-  padding: 15px;
+  justify-content: space-around;
+  padding: 15px 0;
   overflow: hidden;
 `;
