@@ -10,12 +10,12 @@ import ButtonsContainer from "./ButtonsContainer";
 export default function SelectedProductPage() {
   const [product, setProduct] = useState(null);
   const { setShowResult, showResult } = useContext(UserContext);
+  const { productId } = useParams();
 
   useEffect(() => {
     setShowResult(false);
-  }, []);
+  }, [productId]);
 
-  const { productId } = useParams();
   useEffect(() => {
     api
       .getSelectedProduct(productId)
