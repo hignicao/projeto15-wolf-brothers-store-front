@@ -1,11 +1,7 @@
 import styled from "styled-components";
 import logo from "../../assets/images/logo.png";
-import {
-  IoSearch,
-  IoPersonCircleSharp,
-  IoBag,
-} from "react-icons/io5";
-import { useContext, useState } from "react";
+import { IoSearch, IoPersonCircleSharp, IoBag } from "react-icons/io5";
+import { useContext, useEffect, useState } from "react";
 import api from "../../services/api";
 import StyledLink from "../StyledLink/StyledLink";
 import SubProducts from "./SubProducts";
@@ -16,21 +12,26 @@ import StatesContext from "../../providers/StatesContext";
 export default function Header() {
   const { userData } = useContext(UserContext);
   const { setShowCart, setShowResult, showResult } = useContext(StatesContext);
-  const [filteredItens, setFilteredItens] = useState([]);
-
+  const [filteredItens, setFilteredItens] = useState(null);
+  console.log("HEADERR");
   async function handleProductSearch(e) {
+    console.log(e.target.value);
+    setFilteredItens(null);
     const value = e.target.value;
-    if (value.split(" ").join("").length >= 2) {
-      try {
-        const response = await api.getFilteredProducts(value);
-        console.log(response, "PRODUTO");
-
-        setFilteredItens(response.data.filteredProducts);
-      } catch (err) {
-        console.log(err);
-      }
+    if (!value) {
+      setFilteredItens([]);
+      return;
+    }
+    try {
+      const response = await api.getFilteredProducts(value);
+      console.log(response, "PRODUTO");
+      setFilteredItens(response.data.filteredProducts);
+    } catch (err) {
+      console.log(err);
+      setFilteredItens([]);
     }
   }
+
   console.log(filteredItens, "produto");
   return (
     <Container>
@@ -47,7 +48,12 @@ export default function Header() {
       </ShowList>
       <SearchBox>
         <input
-          onFocus={() => setShowResult(true)}
+          onFocus={() => {
+            setShowResult(true);
+            if (filteredItens === null) {
+              setFilteredItens([]);
+            }
+          }}
           type="text"
           placeholder="Search"
           onChange={handleProductSearch}

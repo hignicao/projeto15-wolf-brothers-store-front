@@ -1,15 +1,28 @@
 import styled from "styled-components";
+import Loader from "../Loader/Loader";
 import StyledLink from "../StyledLink/StyledLink";
 
-export default function ProductsFiltered({ filteredItens}) {
-
+export default function ProductsFiltered({ filteredItens }) {
+  if (!filteredItens) {
+    return (
+      <Container filteredItens={filteredItens}>
+        <Loader />
+      </Container>
+    );
+  } else if (filteredItens.length === 0) {
+    return (
+      <Container filteredItens={filteredItens}>
+        <div>Product not found</div>
+      </Container>
+    );
+  }
   return (
-    <Container>
+    <Container filteredItens={filteredItens}>
       {filteredItens.map((product) => (
         <StyledLink key={product._id} to={`/product/${product._id}`}>
           <Product>
             <Image>
-              <img src={product.imageURL} />
+              <img src={product.imgURL} />
             </Image>
             <p>{product.name}</p>
           </Product>
@@ -20,16 +33,30 @@ export default function ProductsFiltered({ filteredItens}) {
 }
 
 const Container = styled.ul`
-border-top: 1px solid black;
+  border-top: 1px solid black;
   width: 100%;
   height: 400px;
-  overflow-y: scroll;
+  overflow-y: auto;
   background-color: #ffffff;
   height: 400px;
   position: absolute;
   top: 40px;
   left: 0;
+  padding: 15px;
+  ${(props) =>
+    props.filteredItens === null || props.filteredItens.length === 0
+      ? " display: flex;"
+      : ""};
+  ${(props) =>
+    props.filteredItens === null || props.filteredItens.length === 0
+      ? " align-items: center;"
+      : ""}
+  ${(props) =>
+    props.filteredItens === null || props.filteredItens.length === 0
+      ? " justify-content: center;"
+      : ""}
 `;
+
 const Product = styled.div`
   width: 100%;
   height: 67px;
@@ -44,11 +71,11 @@ const Product = styled.div`
 `;
 
 const Image = styled.figure`
-  height: 66px;
-  width: 35px;
+  height: 60px;
+  width: 60px;
   img {
     width: 100%;
     height: 100%;
   }
-  margin-right: 32px;
+  margin-right: 20px;
 `;
