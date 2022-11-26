@@ -40,6 +40,11 @@ function getCartProducts(token) {
   const promise = axios.get(`${BASE_URL}/cart`, config);
   return promise;
 }
+function deleCartProduct(id, token) {
+  const config = createConfig(token);
+  const promise = axios.delete(`${BASE_URL}/cart/${id}`, config);
+  return promise;
+}
 const api = {
   createConfig,
   getProducts,
@@ -48,7 +53,8 @@ const api = {
   login,
   register,
   postProduct,
-  getCartProducts
+  getCartProducts,
+  deleCartProduct
 };
 
 export default api;

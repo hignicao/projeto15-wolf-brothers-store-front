@@ -6,14 +6,14 @@ import { useContext, useEffect, useState } from "react";
 import StatesContext from "../../providers/StatesContext";
 import api from "../../services/api";
 import { UserContext } from "../../providers/UserData";
-import Loader from "../Loader/Loader";
+import Swal from "sweetalert2";
 
 export default function Cart() {
   const { setShowCart } = useContext(StatesContext);
   const { userData } = useContext(UserContext);
   const [cartProducts, setCartProducts] = useState(null);
   const [purchaseValue, setPurchaseValue] = useState(0);
-  console.log(cartProducts, purchaseValue);
+
   useEffect(() => {
     api.getCartProducts(userData.token).then((res) => {
       setCartProducts(res.data.products);
@@ -21,6 +21,11 @@ export default function Cart() {
       console.log(res.data);
     });
   }, []);
+
+
+ function deleteProductFromCart(){
+     
+ }  
 
   if (!cartProducts) {
     return;
@@ -57,7 +62,7 @@ export default function Cart() {
                   })}
                 </p>
               </ProductBoxMiddle>
-              <BsFillTrashFill />
+              <BsFillTrashFill onClick={()=>deleteProductFromCart(product._id)}/>
             </ProductBox>
           ))}
         </Middle>
