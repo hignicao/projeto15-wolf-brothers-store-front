@@ -1,16 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import BlackScreen from "../../components/BlackScreen/BlackScreen";
 import Loader from "../../components/Loader/Loader";
 import StatesContext from "../../providers/StatesContext";
-import { UserContext } from "../../providers/UserData";
 import api from "../../services/api";
 import ButtonsContainer from "./ButtonsContainer";
 
 export default function SelectedProductPage() {
   const [product, setProduct] = useState(null);
-  const { setShowResult, showResult } = useContext(StatesContext);
+  const { setShowResult} = useContext(StatesContext);
   const { productId } = useParams();
 
   useEffect(() => {

@@ -48,6 +48,7 @@ const api = {
   login,
   register,
   postProduct,
+  getCartProducts
 };
 
 export default api;

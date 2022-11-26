@@ -2,11 +2,29 @@ import styled from "styled-components";
 import { BsCart4, BsFillTrashFill } from "react-icons/bs";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import Button from "../Button/Button";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import StatesContext from "../../providers/StatesContext";
+import api from "../../services/api";
+import { UserContext } from "../../providers/UserData";
+import Loader from "../Loader/Loader";
 
 export default function Cart() {
-  const { setShowCart } = useContext(StatesContext);
+  const { showCart,setShowCart } = useContext(StatesContext);
+  const { userData } = useContext(UserContext);
+  const [cartProducts, setCartProducts]= useState(null)
+  const [purchaseValue, setPurchaseValue] = useState(0);
+  console.log(cartProducts, purchaseValue)
+  useEffect(() => {
+    api.getCartProducts(userData.token).then((res) => {
+      setCartProducts(res.data.products);
+      setPurchaseValue(res.data.purchasePrice);
+      console.log(res.data);
+    });
+  }, []);
+
+  if(!cartProducts){
+    return <Loader/>
+  }
   return (
     <Container>
       <Overlay onClick={() => setShowCart(false)}></Overlay>
@@ -38,7 +56,7 @@ export default function Cart() {
         </Middle>
         <Bottom>
           <p>
-            Total:<span>R$ 75,96</span>
+            Total:<span>{purchaseValue}</span>
           </p>
         </Bottom>
         <Button width={"100%"} height={"55px"}>
