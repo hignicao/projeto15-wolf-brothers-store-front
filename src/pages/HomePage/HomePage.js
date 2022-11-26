@@ -39,7 +39,14 @@ export default function HomePage() {
 			<p>OUR PRODUCTS</p>
 			<ProductsContainer>
 				{products.map((product) => (
-					<Product key={product._id} imgURL={product.imgURL} name={product.name} price={product.price} id={product._id} type={product.type} />
+					<Product
+          key={product._id}
+          imgURL={product.imgURL}
+          name={product.name}
+          price={product.price}
+          id={product._id}
+          type={product.type}
+          />
 				))}
 			</ProductsContainer>
 			{showResult && <BlackScreen onClick={() => setShowResult(false)} />}
