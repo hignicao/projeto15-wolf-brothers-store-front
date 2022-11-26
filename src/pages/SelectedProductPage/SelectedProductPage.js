@@ -3,13 +3,14 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import BlackScreen from "../../components/BlackScreen/BlackScreen";
 import Loader from "../../components/Loader/Loader";
+import StatesContext from "../../providers/StatesContext";
 import { UserContext } from "../../providers/UserData";
 import api from "../../services/api";
 import ButtonsContainer from "./ButtonsContainer";
 
 export default function SelectedProductPage() {
   const [product, setProduct] = useState(null);
-  const { setShowResult, showResult } = useContext(UserContext);
+  const { setShowResult, showResult } = useContext(StatesContext);
   const { productId } = useParams();
 
   useEffect(() => {
@@ -41,11 +42,15 @@ export default function SelectedProductPage() {
         <Right>
           <h1>{product.name}</h1>
           <Description>{product.type}</Description>
-          <span>{product.price.toLocaleString("pt-br",{ style: 'currency', currency: 'BRL' })}</span>
-          <ButtonsContainer productId={productId}/>
+          <span>
+            {product.price.toLocaleString("pt-br", {
+              style: "currency",
+              currency: "BRL",
+            })}
+          </span>
+          <ButtonsContainer productId={productId} />
         </Right>
       </ProductContainer>
-      {showResult && <BlackScreen onClick={() => setShowResult(false)} />}
     </Container>
   );
 }
@@ -89,7 +94,7 @@ const ImageBox = styled.figure`
   background-color: red;
   img {
     width: 100%;
-    height: auto;
+    height: 100%;
   }
 `;
 const Right = styled.div`

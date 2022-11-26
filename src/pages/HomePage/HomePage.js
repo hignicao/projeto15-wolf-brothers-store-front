@@ -9,7 +9,6 @@ import Product from "./Product";
 
 export default function HomePage() {
   const [products, setProducts] = useState(null);
-  const {setShowResult, showResult } = useContext(UserContext);
   useEffect(() => {
     api
       .getProducts()
@@ -34,7 +33,7 @@ export default function HomePage() {
       <Container>
         <div>
           <ImageSlider />
-        </div>     
+        </div>
         <h1>PRODUCTS IN STOCK</h1>
         <ProductsContainer>
           {products.map((product) => (
@@ -48,7 +47,6 @@ export default function HomePage() {
             />
           ))}
         </ProductsContainer>
-       {showResult && <BlackScreen onClick={()=>setShowResult(false)}/> } 
       </Container>
     </>
   );

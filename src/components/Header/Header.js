@@ -3,7 +3,6 @@ import logo from "../../assets/images/logo.png";
 import {
   IoSearch,
   IoPersonCircleSharp,
-  IoHeartSharp,
   IoBag,
 } from "react-icons/io5";
 import { useContext, useState } from "react";
@@ -15,8 +14,8 @@ import ProductsFiltered from "./ProductsFiltered";
 import StatesContext from "../../providers/StatesContext";
 
 export default function Header() {
-  const { userData, setShowResult, showResult } = useContext(UserContext);
-  const { setShowCart } = useContext(StatesContext);
+  const { userData } = useContext(UserContext);
+  const { setShowCart, setShowResult, showResult } = useContext(StatesContext);
   const [filteredItens, setFilteredItens] = useState([]);
 
   async function handleProductSearch(e) {
