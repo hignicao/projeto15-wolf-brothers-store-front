@@ -12,9 +12,11 @@ import StyledLink from "../StyledLink/StyledLink";
 import SubProducts from "./SubProducts";
 import { UserContext } from "../../providers/UserData";
 import ProductsFiltered from "./ProductsFiltered";
+import StatesContext from "../../providers/StatesContext";
 
 export default function Header() {
   const { userData, setShowResult, showResult } = useContext(UserContext);
+  const { setShowCart } = useContext(StatesContext);
   const [filteredItens, setFilteredItens] = useState([]);
 
   async function handleProductSearch(e) {
@@ -62,7 +64,7 @@ export default function Header() {
             <IoPersonCircleSharp />
           </StyledLink>
         </div>
-        <IoBag />
+        <IoBag onClick={() => setShowCart(true)} />
       </IconBox>
     </Container>
   );

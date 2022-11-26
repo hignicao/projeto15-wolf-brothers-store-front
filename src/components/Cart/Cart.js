@@ -2,11 +2,14 @@ import styled from "styled-components";
 import { BsCart4, BsFillTrashFill } from "react-icons/bs";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import Button from "../Button/Button";
+import { useContext } from "react";
+import StatesContext from "../../providers/StatesContext";
 
 export default function Cart() {
+  const { setShowCart } = useContext(StatesContext);
   return (
     <Container>
-      <Overlay></Overlay>
+      <Overlay onClick={() => setShowCart(false)}></Overlay>
       <CartBox>
         <Top>
           <TopRight>
@@ -17,7 +20,7 @@ export default function Cart() {
             </div>
           </TopRight>
           <TopLeft>
-            <IoCloseCircleOutline />
+            <IoCloseCircleOutline onClick={() => setShowCart(false)} />
           </TopLeft>
         </Top>
         <Middle>
