@@ -1,14 +1,15 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import BlackScreen from "../../components/BlackScreen/BlackScreen";
 import Loader from "../../components/Loader/Loader";
-import { UserContext } from "../../providers/UserData";
+
 import api from "../../services/api";
 import ImageSlider from "./ImageSlider";
 import Product from "./Product";
 
 export default function HomePage() {
   const [products, setProducts] = useState(null);
+
   useEffect(() => {
     api
       .getProducts()
@@ -23,54 +24,60 @@ export default function HomePage() {
 
   if (!products) {
     return (
-      <Container>
+      <ContainerEmpty>
         <Loader />
-      </Container>
+      </ContainerEmpty>
     );
   }
+
   return (
-    <>
-      <Container>
-        <div>
-          <ImageSlider />
-        </div>
-        <h1>PRODUCTS IN STOCK</h1>
-        <ProductsContainer>
-          {products.map((product) => (
-            <Product
-              key={product._id}
-              imgURL={product.imgURL}
-              name={product.name}
-              price={product.price}
-              id={product._id}
-              type={product.type}
-            />
-          ))}
-        </ProductsContainer>
-      </Container>
-    </>
+    <Container>
+      <div>
+        <ImageSlider />
+      </div>
+      <p>OUR PRODUCTS</p>
+      <ProductsContainer>
+        {products.map((product) => (
+          <Product
+            key={product._id}
+            imgURL={product.imgURL}
+            name={product.name}
+            price={product.price}
+            id={product._id}
+            type={product.type}
+          />
+        ))}
+      </ProductsContainer>
+    </Container>
   );
 }
+
+const ContainerEmpty = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40vh;
+`;
 
 const Container = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
-  h1 {
-    color: #000f21;
-    font-size: 50px;
+  p {
+    font-size: 40px;
     font-style: normal;
-    margin: 70px 0;
+    margin: 70px 0 40px 0;
   }
 `;
+
 const ProductsContainer = styled.section`
-  width: 90%;
-  height: 1000px;
+  padding: 20px;
+  margin-bottom: 100px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 15px 0;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
   overflow: hidden;
 `;
