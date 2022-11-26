@@ -8,9 +8,8 @@ export const UserProvider = ({ children }) => {
       ? JSON.parse(localStorage.getItem("userData"))
       : undefined
   );
-  const [showResult, setShowResult] = useState(false);
   return (
-    <UserContext.Provider value={{ userData, setUserData, showResult, setShowResult}}>
+    <UserContext.Provider value={{ userData, setUserData}}>
       {children}
     </UserContext.Provider>
   );
