@@ -45,6 +45,11 @@ function deleCartProduct(id, token) {
   const promise = axios.delete(`${BASE_URL}/cart/${id}`, config);
   return promise;
 }
+function postPurchaseCompletion(body, token) {
+  const config = createConfig(token);
+  const promise = axios.post(`${BASE_URL}/checkout`, body, config);
+  return promise;
+}
 const api = {
   createConfig,
   getProducts,
@@ -54,7 +59,8 @@ const api = {
   register,
   postProduct,
   getCartProducts,
-  deleCartProduct
+  deleCartProduct,
+  postPurchaseCompletion,
 };
 
 export default api;
