@@ -6,6 +6,7 @@ import GlobalStyle from "./assets/style/GlobalStyle";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import { UserProvider } from "./providers/UserData";
+import Cart from "./components/Cart/Cart";
 
 function App() {
   console.log("aaaaap");
@@ -13,6 +14,7 @@ function App() {
     <UserProvider>
       <GlobalStyle />
       <BrowserRouter>
+	  <Cart/> 
        <Header/> 
         <Routes>
           <Route path="/" element={<HomePage />} />
