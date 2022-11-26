@@ -6,21 +6,39 @@ import { useContext, useEffect, useState } from "react";
 import StatesContext from "../../providers/StatesContext";
 import api from "../../services/api";
 import { UserContext } from "../../providers/UserData";
-import Loader from "../Loader/Loader";
+import Swal from "sweetalert2";
+import ProductCart from "./ProductCart";
+import StyledLink from "../StyledLink/StyledLink";
 
 export default function Cart() {
   const { setShowCart } = useContext(StatesContext);
   const { userData } = useContext(UserContext);
   const [cartProducts, setCartProducts] = useState(null);
   const [purchaseValue, setPurchaseValue] = useState(0);
-  console.log(cartProducts, purchaseValue);
+  const [update, setUpdate] = useState(false);
   useEffect(() => {
     api.getCartProducts(userData.token).then((res) => {
       setCartProducts(res.data.products);
       setPurchaseValue(res.data.purschasePrice);
       console.log(res.data);
     });
-  }, []);
+  }, [update]);
+
+  async function deleteProductFromCart(id) {
+    try {
+      await api.deleCartProduct(id, userData.token);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Product successfully deleted ",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      setUpdate(!update);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   if (!cartProducts) {
     return;
@@ -44,20 +62,15 @@ export default function Cart() {
         <Middle>
           {cartProducts.map((product) => (
             <ProductBox>
-              <ProductBoxRight>
-                <img src={product.imgURL} />
-              </ProductBoxRight>
-              <ProductBoxMiddle>
-                <h3>{product.name}</h3>
-                <p>Quantity: {product.quantity}</p>
-                <p>
-                  {product.price.toLocaleString("pt-br", {
-                    style: "currency",
-                    currency: "BRL",
-                  })}
-                </p>
-              </ProductBoxMiddle>
-              <BsFillTrashFill />
+              <ProductCart
+                img={product.imgURL}
+                name={product.name}
+                quantity={product.quantity}
+                price={product.price}
+              />
+              <BsFillTrashFill
+                onClick={() => deleteProductFromCart(product._id)}
+              />
             </ProductBox>
           ))}
         </Middle>
@@ -72,9 +85,11 @@ export default function Cart() {
             </span>
           </p>
         </Bottom>
-        <Button width={"100%"} height={"55px"}>
-          FINALIZAR COMPRAR
-        </Button>
+        <StyledLink to="/checkout">
+          <Button width={"100%"} height={"55px"}>
+            FINALIZAR COMPRAR
+          </Button>
+        </StyledLink>
       </CartBox>
     </Container>
   );
@@ -144,21 +159,7 @@ const ProductBox = styled.div`
     color: gray;
   }
 `;
-const ProductBoxRight = styled.figure`
-  width: 60px;
-  height: 80px;
-  img {
-    width: 100%;
-    height: 100%;
-  }
-`;
-const ProductBoxMiddle = styled.div`
-  width: 80%;
-  height: 80px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
+
 const Bottom = styled.div`
   margin: 42px 0;
   span {
