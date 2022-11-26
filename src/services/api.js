@@ -2,41 +2,47 @@ import axios from "axios";
 import { BASE_URL } from "../constants/urls";
 
 function createConfig(token) {
-	const config = { headers: { Authorization: `Bearer ${token}` } };
-	return config;
+  const config = { headers: { Authorization: `Bearer ${token}` } };
+  return config;
 }
 
 function getProducts() {
-	const promise = axios.get(`${BASE_URL}/products`);
-	return promise;
+  const promise = axios.get(`${BASE_URL}/products`);
+  return promise;
 }
 function getFilteredProducts(name) {
-	const promise = axios.get(`${BASE_URL}/products/filter/${name}`);
-	return promise;
+  const promise = axios.get(`${BASE_URL}/products/filter/${name}`);
+  return promise;
 }
 
 function getSelectedProduct(id) {
-	const promise = axios.get(`${BASE_URL}/products/${id}`);
-	return promise;
+  const promise = axios.get(`${BASE_URL}/products/${id}`);
+  return promise;
 }
 
 function login(loginForm) {
-	const promise = axios.post(`${BASE_URL}/signin`, loginForm);
-	return promise;
+  const promise = axios.post(`${BASE_URL}/signin`, loginForm);
+  return promise;
 }
 
 function register(registerForm) {
-	const promise = axios.post(`${BASE_URL}/signup`, registerForm)
-	return promise
+  const promise = axios.post(`${BASE_URL}/signup`, registerForm);
+  return promise;
 }
 
+function postProduct(productId, body, token) {
+  const config = createConfig(token);
+  const promise = axios.post(`${BASE_URL}/cart/${productId}`, body, config);
+  return promise;
+}
 const api = {
-	createConfig,
-	getProducts,
-	getFilteredProducts,
-	getSelectedProduct,
-	login,
-	register
+  createConfig,
+  getProducts,
+  getFilteredProducts,
+  getSelectedProduct,
+  login,
+  register,
+  postProduct,
 };
 
 export default api;

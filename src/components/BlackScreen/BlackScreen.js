@@ -6,7 +6,7 @@ const BlackScreen = styled.div`
   height: 100%;
   background: black;
   opacity: 0.5;
-  top: 0;
+  top:0;
 `;
 
 export default BlackScreen;

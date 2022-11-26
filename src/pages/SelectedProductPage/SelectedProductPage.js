@@ -34,13 +34,15 @@ export default function SelectedProductPage() {
     <Container>
       <ProductContainer>
         <Left>
-          <img src={product.imgURL} />
+          <ImageBox>
+            <img src={product.imgURL} />
+          </ImageBox>
         </Left>
         <Right>
           <h1>{product.name}</h1>
           <Description>{product.type}</Description>
-          <span>{product.price}</span>
-          <ButtonsContainer />
+          <span>{product.price.toLocaleString("pt-br",{ style: 'currency', currency: 'BRL' })}</span>
+          <ButtonsContainer productId={productId}/>
         </Right>
       </ProductContainer>
       {showResult && <BlackScreen onClick={() => setShowResult(false)} />}
@@ -49,32 +51,45 @@ export default function SelectedProductPage() {
 }
 
 const Container = styled.main`
-  min-height: 100vh;
-  max-width: 100vw;
+  height: 100vh;
+  width: 100vw;
   display: flex;
   overflow-y: none;
+  background-color: #f5f5f5;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  position: relative;
 `;
 const ProductContainer = styled.section`
-  width: 890px;
-  height: 425px;
-  margin-top: 60px;
+  width: 100%;
+  height: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   span {
     font-size: 30px;
   }
 `;
-const Left = styled.figure`
-  width: 390px;
-  height: 390px;
+const Left = styled.div`
+  width: 37%;
+  height: 73%;
   border-radius: 4px;
+  background-color: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+    rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+const ImageBox = styled.figure`
+  width: 60%;
+  height: 60%;
+  background-color: red;
   img {
     width: 100%;
     height: auto;
-    object-fit: fill;
   }
 `;
 const Right = styled.div`
