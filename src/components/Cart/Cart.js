@@ -30,6 +30,7 @@ export default function Cart() {
             </ProductBoxRight>
             <ProductBoxMiddle>
               <h3>Body Malha Canelada - Angel Floral Black G</h3>
+              <p>Quantity: </p>
               <p>R$ 75,96</p>
             </ProductBoxMiddle>
             <BsFillTrashFill />

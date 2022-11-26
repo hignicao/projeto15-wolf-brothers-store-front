@@ -35,6 +35,11 @@ function postProduct(productId, body, token) {
   const promise = axios.post(`${BASE_URL}/cart/${productId}`, body, config);
   return promise;
 }
+function getCartProducts(token) {
+  const config = createConfig(token);
+  const promise = axios.get(`${BASE_URL}/cart`, config);
+  return promise;
+}
 const api = {
   createConfig,
   getProducts,
