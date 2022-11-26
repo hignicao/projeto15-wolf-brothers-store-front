@@ -8,71 +8,78 @@ import ImageSlider from "./ImageSlider";
 import Product from "./Product";
 
 export default function HomePage() {
-  const [products, setProducts] = useState(null);
-  const {setShowResult, showResult } = useContext(UserContext);
-  useEffect(() => {
-    api
-      .getProducts()
-      .then((res) => {
-        console.log(res);
-        setProducts(res.data.products);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+	const [products, setProducts] = useState(null);
+	const { setShowResult, showResult } = useContext(UserContext);
 
-  if (!products) {
-    return (
-      <Container>
-        <Loader />
-      </Container>
-    );
-  }
-  return (
-    <>
-      <Container>
-        <div>
-          <ImageSlider />
-        </div>     
-        <h1>PRODUCTS IN STOCK</h1>
-        <ProductsContainer>
-          {products.map((product) => (
-            <Product
-              key={product._id}
-              imgURL={product.imgURL}
-              name={product.name}
-              price={product.price}
-              id={product._id}
-              type={product.type}
-            />
-          ))}
-        </ProductsContainer>
-       {showResult && <BlackScreen onClick={()=>setShowResult(false)}/> } 
-      </Container>
-    </>
-  );
+	useEffect(() => {
+		api
+			.getProducts()
+			.then((res) => {
+				console.log(res);
+				setProducts(res.data.products);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}, []);
+
+	if (!products) {
+		return (
+			<ContainerEmpty>
+				<Loader />
+			</ContainerEmpty>
+		);
+	}
+
+	return (
+		<Container>
+			<div>
+				<ImageSlider />
+			</div>
+			<p>OUR PRODUCTS</p>
+			<ProductsContainer>
+				{products.map((product) => (
+					<Product
+          key={product._id}
+          imgURL={product.imgURL}
+          name={product.name}
+          price={product.price}
+          id={product._id}
+          type={product.type}
+          />
+				))}
+			</ProductsContainer>
+			{showResult && <BlackScreen onClick={() => setShowResult(false)} />}
+		</Container>
+	);
 }
 
-const Container = styled.main`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  h1 {
-    color: #000f21;
-    font-size: 50px;
-    font-style: normal;
-    margin: 70px 0;
-  }
+const ContainerEmpty = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-top: 40vh;
 `;
+
+const Container = styled.main`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	p {
+		font-size: 40px;
+		font-style: normal;
+		margin: 70px 0 40px 0;
+	}
+`;
+
 const ProductsContainer = styled.section`
-  width: 90%;
-  height: 1000px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 15px 0;
-  overflow: hidden;
+	padding: 20px;
+	margin-bottom: 100px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 50px;
+	overflow: hidden;
 `;
