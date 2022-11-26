@@ -8,7 +8,7 @@ import api from "../../services/api";
 import { UserContext } from "../../providers/UserData";
 import Swal from "sweetalert2";
 import ProductCart from "./ProductCart";
-import StyledLink from "../StyledLink/StyledLink";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
   const { setShowCart } = useContext(StatesContext);
@@ -16,6 +16,7 @@ export default function Cart() {
   const [cartProducts, setCartProducts] = useState(null);
   const [purchaseValue, setPurchaseValue] = useState(0);
   const [update, setUpdate] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
     api.getCartProducts(userData.token).then((res) => {
       setCartProducts(res.data.products);
@@ -39,7 +40,17 @@ export default function Cart() {
       console.log(err);
     }
   }
-
+  function completePurchase() {
+    if (cartProducts.length === 0) {
+      Swal.fire({
+        icon: "warning",
+        title: "Oops...",
+        text: "Your car is empty",
+      });
+    } else {
+      navigate("/checkout");
+    }
+  }
   if (!cartProducts) {
     return;
   }
@@ -85,11 +96,10 @@ export default function Cart() {
             </span>
           </p>
         </Bottom>
-        <StyledLink to="/checkout">
-          <Button width={"100%"} height={"55px"}>
-            FINALIZAR COMPRAR
-          </Button>
-        </StyledLink>
+
+        <Button width={"100%"} height={"55px"} onClick={completePurchase}>
+          FINALIZAR COMPRAR
+        </Button>
       </CartBox>
     </Container>
   );
