@@ -6,50 +6,64 @@ import Button from "../Button/Button";
 export default function Cart() {
   return (
     <Container>
-      <Top>
-        <TopRight>
-          <BsCart4 />
-          <div>
-            <h2>Meu carrinho</h2>
-            <p>Meu carrinho contém 1 itens</p>
-          </div>
-        </TopRight>
-        <TopLeft>
-          <IoCloseCircleOutline />
-        </TopLeft>
-      </Top>
-      <Middle>
-        <ProductBox>
-          <ProductBoxRight>
-            <img src="" />
-          </ProductBoxRight>
-          <ProductBoxMiddle>
-            <h3>Body Malha Canelada - Angel Floral Black G</h3>
-            <p>R$ 75,96</p>
-          </ProductBoxMiddle>
-          <BsFillTrashFill />
-        </ProductBox>
-      </Middle>
-      <Bottom>
-        <p>
-          Total:<span>R$ 75,96</span>
-        </p>
-      </Bottom>
-      <Button width={"100%"} height={"55px"}>
-        FINALIZAR COMPRAR
-      </Button>
+      <Overlay></Overlay>
+      <CartBox>
+        <Top>
+          <TopRight>
+            <BsCart4 />
+            <div>
+              <h2>Meu carrinho</h2>
+              <p>Meu carrinho contém 1 itens</p>
+            </div>
+          </TopRight>
+          <TopLeft>
+            <IoCloseCircleOutline />
+          </TopLeft>
+        </Top>
+        <Middle>
+          <ProductBox>
+            <ProductBoxRight>
+              <img src="" />
+            </ProductBoxRight>
+            <ProductBoxMiddle>
+              <h3>Body Malha Canelada - Angel Floral Black G</h3>
+              <p>R$ 75,96</p>
+            </ProductBoxMiddle>
+            <BsFillTrashFill />
+          </ProductBox>
+        </Middle>
+        <Bottom>
+          <p>
+            Total:<span>R$ 75,96</span>
+          </p>
+        </Bottom>
+        <Button width={"100%"} height={"55px"}>
+          FINALIZAR COMPRAR
+        </Button>
+      </CartBox>
     </Container>
   );
 }
-
 const Container = styled.div`
-  width: 36%;
-  height: 100%;
-  background-color: #FFFFFF;
+  width: 100vw;
+  height: 100vh;
   position: fixed;
   z-index: 4;
   right: 0;
   top: 0;
+  display: flex;
+  justify-content: space-between;
+`;
+const Overlay = styled.div`
+  width: 84%;
+  height: 100%;
+  background: black;
+  opacity: 0.6;
+`;
+const CartBox = styled.div`
+  width: 36%;
+  height: 100%;
+  background-color: #ffffff;
   padding: 38px;
 `;
 const Top = styled.div`
