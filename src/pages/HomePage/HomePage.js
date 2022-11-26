@@ -5,7 +5,7 @@ import Loader from "../../components/Loader/Loader";
 
 import api from "../../services/api";
 import ImageSlider from "./ImageSlider";
-import Product from "./Product";
+import Product from "../../components/Product/Product";
 
 export default function HomePage() {
   const [products, setProducts] = useState(null);
