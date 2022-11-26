@@ -2,11 +2,29 @@ import styled from "styled-components";
 import { BsCart4, BsFillTrashFill } from "react-icons/bs";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import Button from "../Button/Button";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import StatesContext from "../../providers/StatesContext";
+import api from "../../services/api";
+import { UserContext } from "../../providers/UserData";
+import Loader from "../Loader/Loader";
 
 export default function Cart() {
   const { setShowCart } = useContext(StatesContext);
+  const { userData } = useContext(UserContext);
+  const [cartProducts, setCartProducts] = useState(null);
+  const [purchaseValue, setPurchaseValue] = useState(0);
+  console.log(cartProducts, purchaseValue);
+  useEffect(() => {
+    api.getCartProducts(userData.token).then((res) => {
+      setCartProducts(res.data.products);
+      setPurchaseValue(res.data.purschasePrice);
+      console.log(res.data);
+    });
+  }, []);
+
+  if (!cartProducts) {
+    return;
+  }
   return (
     <Container>
       <Overlay onClick={() => setShowCart(false)}></Overlay>
@@ -16,7 +34,7 @@ export default function Cart() {
             <BsCart4 />
             <div>
               <h2>Meu carrinho</h2>
-              <p>Meu carrinho contém 1 itens</p>
+              <p>Meu carrinho contém {cartProducts.length} itens</p>
             </div>
           </TopRight>
           <TopLeft>
@@ -24,20 +42,34 @@ export default function Cart() {
           </TopLeft>
         </Top>
         <Middle>
-          <ProductBox>
-            <ProductBoxRight>
-              <img src="" />
-            </ProductBoxRight>
-            <ProductBoxMiddle>
-              <h3>Body Malha Canelada - Angel Floral Black G</h3>
-              <p>R$ 75,96</p>
-            </ProductBoxMiddle>
-            <BsFillTrashFill />
-          </ProductBox>
+          {cartProducts.map((product) => (
+            <ProductBox>
+              <ProductBoxRight>
+                <img src={product.imgURL} />
+              </ProductBoxRight>
+              <ProductBoxMiddle>
+                <h3>{product.name}</h3>
+                <p>Quantity: {product.quantity}</p>
+                <p>
+                  {product.price.toLocaleString("pt-br", {
+                    style: "currency",
+                    currency: "BRL",
+                  })}
+                </p>
+              </ProductBoxMiddle>
+              <BsFillTrashFill />
+            </ProductBox>
+          ))}
         </Middle>
         <Bottom>
           <p>
-            Total:<span>R$ 75,96</span>
+            Total:
+            <span>
+              {purchaseValue?.toLocaleString("pt-br", {
+                style: "currency",
+                currency: "BRL",
+              })}
+            </span>
           </p>
         </Bottom>
         <Button width={"100%"} height={"55px"}>
@@ -106,6 +138,7 @@ const ProductBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 12px;
   svg {
     font-size: 25px;
     color: gray;
@@ -127,7 +160,7 @@ const ProductBoxMiddle = styled.div`
   justify-content: space-between;
 `;
 const Bottom = styled.div`
-  margin-bottom: 42px;
+  margin: 42px 0;
   span {
     font-weight: bold;
   }

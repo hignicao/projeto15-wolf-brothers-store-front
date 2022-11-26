@@ -9,6 +9,7 @@ import { UserProvider } from "./providers/UserData";
 import Cart from "./components/Cart/Cart";
 import StatesContext from "./providers/StatesContext";
 import { useState } from "react";
+import BlackScreen from "./components/BlackScreen/BlackScreen";
 
 function App() {
   const [showResult, setShowResult] = useState(false);
@@ -22,6 +23,7 @@ function App() {
         <GlobalStyle />
         <BrowserRouter>
           {showCart && <Cart />}
+          {showResult && <BlackScreen />}
           <Header />
           <Routes>
             <Route path="/" element={<HomePage />} />
