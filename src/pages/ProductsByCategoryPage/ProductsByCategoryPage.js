@@ -7,11 +7,11 @@ import { useParams } from "react-router-dom";
 
 export default function ProductsByCategoryPage() {
 	const [products, setProducts] = useState(null);
-	const { category } = useParams();
-
+	const { category, gender } = useParams();
+  
 	useEffect(() => {
 		api
-			.getProductsByCategory(category)
+			.getProductsByCategory(gender,category)
 			.then((res) => {
 				console.log(res);
 				setProducts(res.data);
@@ -19,7 +19,7 @@ export default function ProductsByCategoryPage() {
 			.catch((err) => {
 				console.log(err);
 			});
-	}, [category]);
+	}, [category,gender]);
 
 	if (!products) {
 		return (

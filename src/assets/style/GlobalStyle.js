@@ -52,6 +52,9 @@ const GlobalStyle = createGlobalStyle`
 	}
     body{
 		overflow-x:hidden;
+		svg{
+			cursor:pointer;
+		}
 	}
 `;
 

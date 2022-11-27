@@ -5,19 +5,19 @@ export default function SubProducts({ gender }) {
 	if (gender === "women") {
 		return (
 			<Container>
-				<StyledLink to="/products/category/OVERALLS">
+				<StyledLink to="/products/women/OVERALLS">
 					<li>OVERALLS</li>
 				</StyledLink>
-				<StyledLink to="/products/category/COATS">
+				<StyledLink to="/products/women/COATS">
 					<li>COATS</li>
 				</StyledLink>
-				<StyledLink to="/products/category/DRESSES">
+				<StyledLink to="/products/women/DRESSES">
 					<li>DRESSES</li>
 				</StyledLink>
-				<StyledLink to="/products/category/T-SHIRTS">
+				<StyledLink to="/products/women/T-SHIRTS">
 					<li>T-SHIRTS</li>
 				</StyledLink>
-				<StyledLink to="/products/category/ACCESSORIES">
+				<StyledLink to="/products/women/ACCESSORIES">
 					<li>ACCESSORIES</li>
 				</StyledLink>
 			</Container>
@@ -25,19 +25,19 @@ export default function SubProducts({ gender }) {
 	} else if (gender === "men") {
 		return (
 			<Container>
-				<StyledLink to="/products/category/JEANS">
+				<StyledLink to="/products/men/JEANS">
 					<li>JEANS</li>
 				</StyledLink>
-				<StyledLink to="/products/category/POLO">
+				<StyledLink to="/products/men/POLO">
 					<li>POLO</li>
 				</StyledLink>
-				<StyledLink to="/products/category/BLAZER">
+				<StyledLink to="/products/men/BLAZER">
 					<li>BLAZER</li>
 				</StyledLink>
-				<StyledLink to="/products/category/T-SHIRTS">
+				<StyledLink to="/products/men/T-SHIRTS">
 					<li>T-SHIRTS</li>
 				</StyledLink>
-				<StyledLink to="/products/category/ACCESSORIES">
+				<StyledLink to="/products/men/ACCESSORIES">
 					<li>ACCESSORIES</li>
 				</StyledLink>
 			</Container>
