@@ -1,22 +1,57 @@
 import styled from "styled-components";
 import { BsCart4 } from "react-icons/bs";
 import StyledLink from "../StyledLink/StyledLink";
+import Swal from "sweetalert2";
+import api from "../../services/api";
 
-export default function Product({ imgURL, name, price, id}) {
+export default function Product({ imgURL, name, price, id, userData }) {
+	async function addProductToCart() {
+		if (!userData) {
+			Swal.fire({
+				icon: "warning",
+				title: "Oops...",
+				text: "In oder to add this product to your cart you must be logged!",
+			});
+			return;
+		}
+
+		const body = { quantity: 1 };
+
+		try {
+			await api.postProduct(id, body, userData.token);
+
+			Swal.fire({
+				position: "center",
+				icon: "success",
+				title: "Product successfully added ",
+				showConfirmButton: false,
+				timer: 1500,
+			});
+		} catch (err) {
+			console.log(err);
+		}
+	}
+
 	return (
-		<StyledLink to={`/product/${id}`}>
-			<ProductContainer>
+		<ProductContainer>
+			<StyledLink to={`/product/${id}`}>
 				<img src={imgURL} alt={name} />
 				<Title>{name}</Title>
-				<span>${price}</span>
-				<button>
-					<BsCart4 />
-					Add to cart
-				</button>
-			</ProductContainer>
-		</StyledLink>
+				<span>
+					{price.toLocaleString("en", {
+						style: "currency",
+						currency: "USD",
+					})}
+				</span>
+			</StyledLink>
+			<button onClick={addProductToCart}>
+				<BsCart4 />
+				Add to cart
+			</button>
+		</ProductContainer>
 	);
 }
+
 const ProductContainer = styled.div`
 	position: relative;
 	background-color: #ffffff;

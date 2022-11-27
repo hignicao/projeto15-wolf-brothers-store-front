@@ -1,19 +1,20 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import Loader from "../../components/Loader/Loader";
 
 import api from "../../services/api";
 import ImageSlider from "./ImageSlider";
 import Product from "../../components/Product/Product";
+import { UserContext } from "../../providers/UserData";
 
 export default function HomePage() {
+  const { userData } = useContext(UserContext);
   const [products, setProducts] = useState(null);
 
   useEffect(() => {
     api
       .getProducts()
       .then((res) => {
-        console.log(res);
         setProducts(res.data.products);
       })
       .catch((err) => {
@@ -44,6 +45,7 @@ export default function HomePage() {
             price={product.price}
             id={product._id}
             type={product.type}
+            userData={userData}
           />
         ))}
       </ProductsContainer>

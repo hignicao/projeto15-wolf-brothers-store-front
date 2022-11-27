@@ -18,7 +18,6 @@ export default function ChekouPage() {
     api.getCartProducts(userData.token).then((res) => {
       setCartProducts(res.data.products);
       setPurchaseValue(res.data.purschasePrice);
-      console.log(res.data);
     });
   }, []);
 
@@ -28,7 +27,6 @@ export default function ChekouPage() {
       CPF,
       CEP,
     };
-    console.log(body);
     try {
       await api.postPurchaseCompletion(body, userData.token);
       Swal.fire({
@@ -91,9 +89,9 @@ export default function ChekouPage() {
         </PurchaseSummary>
         <p>
           Total:
-          {purchaseValue?.toLocaleString("pt-br", {
+          {purchaseValue?.toLocaleString("en", {
             style: "currency",
-            currency: "BRL",
+            currency: "USD",
           })}
         </p>
         <button onClick={completePurchase}>Finalizar compra</button>
