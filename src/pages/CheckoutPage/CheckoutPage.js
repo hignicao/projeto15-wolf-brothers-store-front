@@ -19,7 +19,7 @@ export default function ChekouPage() {
       setCartProducts(res.data.products);
       setPurchaseValue(res.data.purschasePrice);
     });
-  }, []);
+  }, [userData.token]);
 
   async function completePurchase() {
     const body = {
