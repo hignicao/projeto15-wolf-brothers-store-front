@@ -8,11 +8,14 @@ import SubProducts from "./SubProducts";
 import { UserContext } from "../../providers/UserData";
 import ProductsFiltered from "./ProductsFiltered";
 import StatesContext from "../../providers/StatesContext";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
 	const { userData } = useContext(UserContext);
 	const { setShowCart, setShowResult, showResult } = useContext(StatesContext);
 	const [filteredItens, setFilteredItens] = useState(null);
+  const navigate = useNavigate();
 
   async function handleProductSearch(e) {
 		setFilteredItens(null);
@@ -29,6 +32,20 @@ export default function Header() {
 			setFilteredItens([]);
 		}
 	}
+
+  function showCart() {
+    if (!userData) {
+			Swal.fire({
+				icon: "warning",
+				title: "Oops...",
+				text: "In order to access the cart you must be logged!",
+			});
+      navigate("/signin");
+			return;
+		} else {
+      setShowCart(true);
+    }
+  }
 
 	return (
 		<Container>
@@ -65,7 +82,7 @@ export default function Header() {
 						<IoPersonCircleSharp />
 					</StyledLink>
 				</div>
-				<IoBag onClick={() => setShowCart(true)} />
+				<IoBag onClick={() => showCart()} />
 			</IconBox>
 		</Container>
 	);

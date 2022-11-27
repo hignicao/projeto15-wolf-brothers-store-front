@@ -7,10 +7,10 @@ export default function ProductCart({ img, quantity, price, name }) {
 				<img src={img} alt="product" />
 			</Right>
 			<Left>
-        <div>
-          <h3>{name}</h3>
-          <p>QTY: {quantity}</p>
-        </div>
+				<div>
+					<h3>{name}</h3>
+					<p>QTY: {quantity}</p>
+				</div>
 				<p>
 					{price?.toLocaleString("en", {
 						style: "currency",
@@ -43,18 +43,18 @@ const Left = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-  div {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+	div {
+		display: flex;
+		flex-direction: column;
+		gap: 5px;
 
-    h3 {
-      font-size: 20px;
-      font-weight: 600;
-    }
-  }
-  > p {
-    font-size: 18px;
-    font-weight: 600;
-  }
+		h3 {
+			font-size: 20px;
+			font-weight: 600;
+		}
+	}
+	> p {
+		font-size: 18px;
+		font-weight: 600;
+	}
 `;
