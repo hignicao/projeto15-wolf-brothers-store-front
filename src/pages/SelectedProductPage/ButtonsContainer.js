@@ -15,7 +15,7 @@ export default function ButtonsContainer({ productId }) {
 			Swal.fire({
 				icon: "warning",
 				title: "Oops...",
-				text: "In oder to add this product to your cart you must be logged!",
+				text: "In order to add this product to your cart you must be logged!",
 			});
 			return;
 		} else if (Number(quantity) === 0) {

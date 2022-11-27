@@ -1,19 +1,13 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Loader from "../../components/Loader/Loader";
-import StatesContext from "../../providers/StatesContext";
 import api from "../../services/api";
 import ButtonsContainer from "./ButtonsContainer";
 
 export default function SelectedProductPage() {
-  const [product, setProduct] = useState(null);
-  const { setShowResult} = useContext(StatesContext);
-  const { productId } = useParams();
-/*
-  useEffect(() => {
-    setShowResult(false);
-  }, [productId]); */
+	const [product, setProduct] = useState(null);
+	const { productId } = useParams();
 
 	useEffect(() => {
 		api
@@ -62,7 +56,7 @@ const Container = styled.main`
 
 const ProductContainer = styled.section`
 	height: 70%;
-  padding: 40px;
+	padding: 40px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -97,10 +91,10 @@ const Right = styled.div`
 		font-weight: bold;
 		letter-spacing: 1px;
 	}
-  span {
-    font-size: 30px;
-    font-weight: bold;
-  }
+	span {
+		font-size: 30px;
+		font-weight: bold;
+	}
 `;
 
 const Description = styled.div`

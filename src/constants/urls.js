@@ -1,1 +1,1 @@
-export const BASE_URL = "https://wolfbrothersstore-api.onrender.com"
+export const BASE_URL = "https://wolfbrothersstore-api.onrender.com";

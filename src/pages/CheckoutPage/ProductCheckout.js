@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
-export default function ProductCart({ img, quantity, price, name }) {
+export default function ProductCheckout({ img, quantity, price, name }) {
 	return (
 		<Container>
-			<Right>
-				<img src={img} alt="product" />
-			</Right>
 			<Left>
+				<img src={img} alt="product" />
+			</Left>
+			<Right>
 				<div>
-					<h3>{name}</h3>
+					<span>{name}</span>
 					<p>QTY: {quantity}</p>
 				</div>
 				<p>
@@ -17,29 +17,29 @@ export default function ProductCart({ img, quantity, price, name }) {
 						currency: "USD",
 					})}
 				</p>
-			</Left>
+			</Right>
 		</Container>
 	);
 }
 
 const Container = styled.div`
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
 	height: 80px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 `;
 
-const Right = styled.figure`
+const Left = styled.figure`
 	height: 100%;
-	width: 60px;
 	img {
 		height: 100%;
 	}
 `;
 
-const Left = styled.div`
+const Right = styled.div`
+	text-align: end;
 	height: 80px;
-	margin-left: 10px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -48,7 +48,7 @@ const Left = styled.div`
 		flex-direction: column;
 		gap: 5px;
 
-		h3 {
+		span {
 			font-size: 20px;
 			font-weight: 600;
 		}
