@@ -11,35 +11,32 @@ import StatesContext from "./providers/StatesContext";
 import { useState } from "react";
 import BlackScreen from "./components/BlackScreen/BlackScreen";
 import ChekouPage from "./pages/CheckoutPage/CheckoutPage";
+import UserPage from "./pages/UserPage/UserPage";
 
 function App() {
-  const [showResult, setShowResult] = useState(false);
-  const [showCart, setShowCart] = useState(false);
+	const [showResult, setShowResult] = useState(false);
+	const [showCart, setShowCart] = useState(false);
 
-  return (
-    <UserProvider>
-      <StatesContext.Provider
-        value={{ showCart, setShowCart, showResult, setShowResult }}
-      >
-        <GlobalStyle />
-        <BrowserRouter>
-          {showCart && <Cart />}
-          {showResult && <BlackScreen />}
-          <Header />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route
-              path="/product/:productId"
-              element={<SelectedProductPage />}
-            />
-            <Route path="/signin" element={<LoginPage />} />
-            <Route path="/signup" element={<RegistrationPage />} />
-            <Route path="/checkout" element={<ChekouPage />} />
-          </Routes>
-        </BrowserRouter>
-      </StatesContext.Provider>
-    </UserProvider>
-  );
+	return (
+		<UserProvider>
+			<StatesContext.Provider value={{ showCart, setShowCart, showResult, setShowResult }}>
+				<GlobalStyle />
+				<BrowserRouter>
+					{showCart && <Cart />}
+					{showResult && <BlackScreen />}
+					<Header />
+					<Routes>
+						<Route path="/" element={<HomePage />} />
+						<Route path="/product/:productId" element={<SelectedProductPage />} />
+						<Route path="/signin" element={<LoginPage />} />
+						<Route path="/signup" element={<RegistrationPage />} />
+						<Route path="/checkout" element={<ChekouPage />} />
+						<Route path="/user" element={<UserPage />} />
+					</Routes>
+				</BrowserRouter>
+			</StatesContext.Provider>
+		</UserProvider>
+	);
 }
 
 export default App;
