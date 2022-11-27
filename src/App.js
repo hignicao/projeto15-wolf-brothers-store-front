@@ -12,6 +12,7 @@ import { useState } from "react";
 import BlackScreen from "./components/BlackScreen/BlackScreen";
 import ChekouPage from "./pages/CheckoutPage/CheckoutPage";
 import UserPage from "./pages/UserPage/UserPage";
+import ProductsByCategoryPage from "./pages/ProductsByCategoryPage/ProductsByCategoryPage";
 
 function App() {
 	const [showResult, setShowResult] = useState(false);
@@ -32,6 +33,10 @@ function App() {
 						<Route path="/signup" element={<RegistrationPage />} />
 						<Route path="/checkout" element={<ChekouPage />} />
 						<Route path="/user" element={<UserPage />} />
+            <Route
+              path="/products/category/:category"
+              element={<ProductsByCategoryPage />}
+            />
 					</Routes>
 				</BrowserRouter>
 			</StatesContext.Provider>

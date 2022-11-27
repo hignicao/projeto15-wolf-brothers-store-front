@@ -63,17 +63,24 @@ function getPurchaseHistory(token) {
 	return promise;
 }
 
+
+function getProductsByCategory(category) {
+  const promise = axios.get(`${BASE_URL}/products/category/${category}`);
+  return promise;
+}
 const api = {
-	createConfig,
-	getProducts,
-	getFilteredProducts,
-	getSelectedProduct,
-	login,
-	register,
-	postProduct,
-	getCartProducts,
-	deleCartProduct,
-	postPurchaseCompletion,
+  createConfig,
+  getProducts,
+  getFilteredProducts,
+  getSelectedProduct,
+  login,
+  register,
+  postProduct,
+  getCartProducts,
+  deleCartProduct,
+  postPurchaseCompletion,
+  getProductsByCategory,
+  getPurchaseHistory,
 };
 
 export default api;

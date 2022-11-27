@@ -8,6 +8,7 @@ import api from "../../services/api";
 import { UserContext } from "../../providers/UserData";
 import ProductCart from "./ProductCart";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function Cart() {
 	const { setShowCart } = useContext(StatesContext);
@@ -16,7 +17,6 @@ export default function Cart() {
 	const [purchaseValue, setPurchaseValue] = useState(0);
 	const [update, setUpdate] = useState(false);
   const navigate = useNavigate();
-
 
 	useEffect(() => {
 		api.getCartProducts(userData.token).then((res) => {
@@ -35,8 +35,16 @@ export default function Cart() {
 	}
 
   function goToCheckout() {
-    setShowCart(false);
-    navigate("/checkout");
+    if (cartProducts.length === 0) {
+      Swal.fire({
+        icon: "warning",
+        title: "Oops...",
+        text: "Your car is empty",
+      });
+    } else {
+      setShowCart(false);
+      navigate("/checkout");
+    }
   }
 
 	if (!cartProducts) {
