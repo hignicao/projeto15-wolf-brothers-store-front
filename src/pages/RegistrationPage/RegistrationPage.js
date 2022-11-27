@@ -93,7 +93,8 @@ const RegistrationPageScreen = styled.div`
 
 const RegistrationPageContainer = styled.div`
 	padding: 30px;
-	background-color: #f5f5f5;
+	background-color: #FFFFFF;
+	box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 7px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;

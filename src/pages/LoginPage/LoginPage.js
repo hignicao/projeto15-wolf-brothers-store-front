@@ -73,12 +73,13 @@ const LoginPageScreen = styled.div`
 
 const LoginPageContainer = styled.div`
 	padding: 30px;
-	background-color: #f5f5f5;
+	background-color: #FFFFFF;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	gap: 20px;
+	box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 7px;
 	p {
 		font-size: 18px;
 	}
