@@ -39,7 +39,7 @@ export default function Cart() {
       Swal.fire({
         icon: "warning",
         title: "Oops...",
-        text: "Your car is empty",
+        text: "Your cart is empty",
       });
     } else {
       setShowCart(false);
@@ -65,7 +65,7 @@ export default function Cart() {
 				</Top>
 				<Middle>
 					{cartProducts.map((product) => (
-						<ProductBox>
+            <ProductBox key={product._id}>
 							<ProductCart img={product.imgURL} name={product.name} quantity={product.quantity} price={product.price} />
 							<BsFillTrashFill onClick={() => deleteProductFromCart(product._id)} />
 						</ProductBox>

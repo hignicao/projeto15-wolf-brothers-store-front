@@ -10,7 +10,7 @@ export default function Product({ imgURL, name, price, id, userData }) {
 			Swal.fire({
 				icon: "warning",
 				title: "Oops...",
-				text: "In oder to add this product to your cart you must be logged!",
+				text: "In order to add this product to your cart you must be logged!",
 			});
 			return;
 		}
