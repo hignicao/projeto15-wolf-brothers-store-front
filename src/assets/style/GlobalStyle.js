@@ -30,7 +30,7 @@ const GlobalStyle = createGlobalStyle`
 		line-height: 1;
 		margin-top: 100px;
 		width:100vw;
-		background-color: #F9FBFA;
+		background-color: #E4E4E4;
 	}
 	ol, ul {
 		list-style: none;

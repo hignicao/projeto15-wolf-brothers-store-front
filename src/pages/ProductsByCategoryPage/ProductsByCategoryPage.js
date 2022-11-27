@@ -1,26 +1,25 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Loader from "../../components/Loader/Loader";
-
 import api from "../../services/api";
-import ImageSlider from "./ImageSlider";
 import Product from "../../components/Product/Product";
-import { UserContext } from "../../providers/UserData";
+import { useParams } from "react-router-dom";
 
-export default function HomePage() {
-	const { userData } = useContext(UserContext);
+export default function ProductsByCategoryPage() {
 	const [products, setProducts] = useState(null);
+	const { category } = useParams();
 
 	useEffect(() => {
 		api
-			.getProducts()
+			.getProductsByCategory(category)
 			.then((res) => {
-				setProducts(res.data.products);
+				console.log(res);
+				setProducts(res.data);
 			})
 			.catch((err) => {
 				console.log(err);
 			});
-	}, []);
+	}, [category]);
 
 	if (!products) {
 		return (
@@ -32,13 +31,10 @@ export default function HomePage() {
 
 	return (
 		<Container>
-			<div>
-				<ImageSlider />
-			</div>
-			<p>OUR PRODUCTS</p>
+			<p>{category}</p>
 			<ProductsContainer>
 				{products.map((product) => (
-					<Product key={product._id} imgURL={product.imgURL} name={product.name} price={product.price} id={product._id} type={product.type} userData={userData} />
+					<Product key={product._id} imgURL={product.imgURL} name={product.name} price={product.price} id={product._id} />
 				))}
 			</ProductsContainer>
 		</Container>

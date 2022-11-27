@@ -32,10 +32,10 @@ export default function RegistrationPage() {
 	}
 
 	return (
-    <RegistrationPageScreen>
-      <RegistrationPageContainer>
-        <p>REGISTER NOW!</p>
-        <Form onSubmit={register}>
+		<RegistrationPageScreen>
+			<RegistrationPageContainer>
+				<p>REGISTER NOW!</p>
+				<Form onSubmit={register}>
           <input
             required
             disabled={disabled}
@@ -77,23 +77,23 @@ export default function RegistrationPage() {
           />
 
           <ButtonItem disabled={disabled} type="submit">{(disabled ? loader : "SIGN-UP")}</ButtonItem>
-        </Form>
-        ALREADY HAVE AN ACCOUNT? <LinkText to={"/"}>LOGIN HERE</LinkText>
-      </RegistrationPageContainer>
-    </RegistrationPageScreen>
+        </Form>ALREADY HAVE AN ACCOUNT? <LinkText to={"/"}>LOGIN HERE</LinkText>
+			</RegistrationPageContainer>
+		</RegistrationPageScreen>
 	);
 }
 
 const RegistrationPageScreen = styled.div`
-  padding: 80px 0 80px 0;
+	padding: 80px 0 80px 0;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-`
+`;
 
 const RegistrationPageContainer = styled.div`
 	padding: 30px;
-	background-color: #f5f5f5;
+	background-color: #ffffff;
+	box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 7px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -110,12 +110,12 @@ const Form = styled.form`
 	flex-direction: column;
 	gap: 12px;
 	input {
-		font-family: 'Lora', serif;
-    padding: 15px;
-    border: none;
-    outline: none;
-    font-weight: 400;
-    font-size: 16px;
+		font-family: "Lora", serif;
+		padding: 15px;
+		border: none;
+		outline: none;
+		font-weight: 400;
+		font-size: 16px;
 	}
 `;
 
@@ -128,9 +128,9 @@ const ButtonItem = styled.button`
 	font-size: 16px;
 	padding: 12px;
 	border: none;
-	color: #FFFFFF;
+	color: #ffffff;
 	background-color: #000000;
-	font-family: 'Lora', serif;
+	font-family: "Lora", serif;
 `;
 
 const LinkText = styled(Link)`

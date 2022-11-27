@@ -2,133 +2,173 @@ import styled from "styled-components";
 import { BsCart4, BsFillTrashFill } from "react-icons/bs";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import Button from "../Button/Button";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import StatesContext from "../../providers/StatesContext";
+import api from "../../services/api";
+import { UserContext } from "../../providers/UserData";
+import ProductCart from "./ProductCart";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function Cart() {
-  const { setShowCart } = useContext(StatesContext);
-  return (
-    <Container>
-      <Overlay onClick={() => setShowCart(false)}></Overlay>
-      <CartBox>
-        <Top>
-          <TopRight>
-            <BsCart4 />
-            <div>
-              <h2>Meu carrinho</h2>
-              <p>Meu carrinho contém 1 itens</p>
-            </div>
-          </TopRight>
-          <TopLeft>
-            <IoCloseCircleOutline onClick={() => setShowCart(false)} />
-          </TopLeft>
-        </Top>
-        <Middle>
-          <ProductBox>
-            <ProductBoxRight>
-              <img src="" />
-            </ProductBoxRight>
-            <ProductBoxMiddle>
-              <h3>Body Malha Canelada - Angel Floral Black G</h3>
-              <p>R$ 75,96</p>
-            </ProductBoxMiddle>
-            <BsFillTrashFill />
-          </ProductBox>
-        </Middle>
-        <Bottom>
-          <p>
-            Total:<span>R$ 75,96</span>
-          </p>
-        </Bottom>
-        <Button width={"100%"} height={"55px"}>
-          FINALIZAR COMPRAR
-        </Button>
-      </CartBox>
-    </Container>
-  );
+	const { setShowCart } = useContext(StatesContext);
+	const { userData } = useContext(UserContext);
+	const [cartProducts, setCartProducts] = useState(null);
+	const [purchaseValue, setPurchaseValue] = useState(0);
+	const [update, setUpdate] = useState(false);
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		api.getCartProducts(userData.token).then((res) => {
+			setCartProducts(res.data.products);
+			setPurchaseValue(res.data.purchasePrice);
+		});
+	}, [update, userData.token]);
+
+	async function deleteProductFromCart(id) {
+		try {
+			await api.deleCartProduct(id, userData.token);
+			setUpdate(!update);
+		} catch (err) {
+			console.log(err);
+		}
+	}
+
+	function goToCheckout() {
+		if (cartProducts.length === 0) {
+			Swal.fire({
+				icon: "warning",
+				title: "Oops...",
+				text: "Your cart is empty",
+			});
+		} else {
+			setShowCart(false);
+			navigate("/checkout");
+		}
+	}
+
+	if (!cartProducts) {
+		return;
+	}
+	return (
+		<Container>
+			<Overlay onClick={() => setShowCart(false)}></Overlay>
+			<CartBox>
+				<Top>
+					<TopRight>
+						<BsCart4 />
+						<h2>Meu carrinho</h2>
+					</TopRight>
+					<TopLeft>
+						<IoCloseCircleOutline onClick={() => setShowCart(false)} />
+					</TopLeft>
+				</Top>
+				<Middle>
+					{cartProducts.map((product) => (
+						<ProductBox key={product._id}>
+							<ProductCart img={product.imgURL} name={product.name} quantity={product.quantity} price={product.price} />
+							<BsFillTrashFill onClick={() => deleteProductFromCart(product._id)} />
+						</ProductBox>
+					))}
+				</Middle>
+				<Bottom>
+					<span>Total: </span>
+					<span>
+						{purchaseValue?.toLocaleString("en", {
+							style: "currency",
+							currency: "USD",
+						})}
+					</span>
+				</Bottom>
+				<Button onClick={() => goToCheckout()} width={"100%"} height={"55px"}>
+					FINALIZAR COMPRA
+				</Button>
+			</CartBox>
+		</Container>
+	);
 }
+
 const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  z-index: 4;
-  right: 0;
-  top: 0;
-  display: flex;
-  justify-content: space-between;
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	z-index: 4;
+	right: 0;
+	top: 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 `;
+
 const Overlay = styled.div`
-  width: 84%;
-  height: 100%;
-  background: black;
-  opacity: 0.6;
+	width: 50%;
+	height: 100%;
+	background: black;
+	opacity: 0.6;
 `;
+
 const CartBox = styled.div`
-  width: 36%;
-  height: 100%;
-  background-color: #ffffff;
-  padding: 38px;
+	width: 50%;
+	height: 100%;
+	background-color: #ffffff;
+	padding: 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 `;
+
 const Top = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 `;
+
 const TopRight = styled.div`
-  width: 90%;
-  display: flex;
-  align-items: center;
-  div {
-    margin-left: 33px;
-    h2 {
-      font-size: 25px;
-      margin-bottom: 5px;
-    }
-  }
-  svg {
-    font-size: 45px;
-  }
+	display: flex;
+	align-items: center;
+	gap: 15px;
+	h2 {
+		font-size: 25px;
+	}
+	svg {
+		font-size: 40px;
+	}
 `;
+
 const TopLeft = styled.div`
-  svg {
-    font-size: 45px;
-  }
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	svg {
+		font-size: 45px;
+	}
 `;
+
 const Middle = styled.div`
-  width: 100%;
-  height: 500px;
-  margin-top: 50px;
-  overflow-y: auto;
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 15px;
+	width: 100%;
+	margin-top: 50px;
 `;
+
 const ProductBox = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  svg {
-    font-size: 25px;
-    color: gray;
-  }
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	svg {
+		font-size: 25px;
+		color: gray;
+	}
 `;
-const ProductBoxRight = styled.figure`
-  width: 60px;
-  height: 80px;
-  img {
-    width: 100%;
-    height: 100%;
-  }
-`;
-const ProductBoxMiddle = styled.div`
-  width: 80%;
-  height: 80px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
+
 const Bottom = styled.div`
-  margin-bottom: 42px;
-  span {
-    font-weight: bold;
-  }
+	span {
+		font-size: 22px;
+		font-weight: bold;
+	}
 `;
