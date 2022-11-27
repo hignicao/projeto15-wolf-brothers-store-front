@@ -16,7 +16,7 @@ export default function Cart() {
 	const [cartProducts, setCartProducts] = useState(null);
 	const [purchaseValue, setPurchaseValue] = useState(0);
 	const [update, setUpdate] = useState(false);
-  const navigate = useNavigate();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		api.getCartProducts(userData.token).then((res) => {
@@ -34,18 +34,18 @@ export default function Cart() {
 		}
 	}
 
-  function goToCheckout() {
-    if (cartProducts.length === 0) {
-      Swal.fire({
-        icon: "warning",
-        title: "Oops...",
-        text: "Your cart is empty",
-      });
-    } else {
-      setShowCart(false);
-      navigate("/checkout");
-    }
-  }
+	function goToCheckout() {
+		if (cartProducts.length === 0) {
+			Swal.fire({
+				icon: "warning",
+				title: "Oops...",
+				text: "Your cart is empty",
+			});
+		} else {
+			setShowCart(false);
+			navigate("/checkout");
+		}
+	}
 
 	if (!cartProducts) {
 		return;
@@ -65,7 +65,7 @@ export default function Cart() {
 				</Top>
 				<Middle>
 					{cartProducts.map((product) => (
-            <ProductBox key={product._id}>
+						<ProductBox key={product._id}>
 							<ProductCart img={product.imgURL} name={product.name} quantity={product.quantity} price={product.price} />
 							<BsFillTrashFill onClick={() => deleteProductFromCart(product._id)} />
 						</ProductBox>
@@ -80,9 +80,9 @@ export default function Cart() {
 						})}
 					</span>
 				</Bottom>
-        <Button onClick={() => goToCheckout()} width={"100%"} height={"55px"}>
-          FINALIZAR COMPRA
-        </Button>
+				<Button onClick={() => goToCheckout()} width={"100%"} height={"55px"}>
+					FINALIZAR COMPRA
+				</Button>
 			</CartBox>
 		</Container>
 	);
@@ -168,7 +168,7 @@ const ProductBox = styled.div`
 
 const Bottom = styled.div`
 	span {
-    font-size: 22px;
+		font-size: 22px;
 		font-weight: bold;
 	}
 `;

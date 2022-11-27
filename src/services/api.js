@@ -57,30 +57,28 @@ function postPurchaseCompletion(body, token) {
 
 function getPurchaseHistory(token) {
 	const config = createConfig(token);
-
 	const promise = axios.get(`${BASE_URL}/orders`, config);
-
 	return promise;
 }
 
-
 function getProductsByCategory(category) {
-  const promise = axios.get(`${BASE_URL}/products/category/${category}`);
-  return promise;
+	const promise = axios.get(`${BASE_URL}/products/category/${category}`);
+	return promise;
 }
+
 const api = {
-  createConfig,
-  getProducts,
-  getFilteredProducts,
-  getSelectedProduct,
-  login,
-  register,
-  postProduct,
-  getCartProducts,
-  deleCartProduct,
-  postPurchaseCompletion,
-  getProductsByCategory,
-  getPurchaseHistory,
+	createConfig,
+	getProducts,
+	getFilteredProducts,
+	getSelectedProduct,
+	login,
+	register,
+	postProduct,
+	getCartProducts,
+	deleCartProduct,
+	postPurchaseCompletion,
+	getProductsByCategory,
+	getPurchaseHistory,
 };
 
 export default api;

@@ -15,9 +15,9 @@ export default function Header() {
 	const { userData } = useContext(UserContext);
 	const { setShowCart, setShowResult, showResult } = useContext(StatesContext);
 	const [filteredItens, setFilteredItens] = useState(null);
-  const navigate = useNavigate();
+	const navigate = useNavigate();
 
-  async function handleProductSearch(e) {
+	async function handleProductSearch(e) {
 		setFilteredItens(null);
 		const value = e.target.value;
 		if (!value) {
@@ -33,19 +33,19 @@ export default function Header() {
 		}
 	}
 
-  function showCart() {
-    if (!userData) {
+	function showCart() {
+		if (!userData) {
 			Swal.fire({
 				icon: "warning",
 				title: "Oops...",
 				text: "In order to access the cart you must be logged!",
 			});
-      navigate("/signin");
+			navigate("/signin");
 			return;
 		} else {
-      setShowCart(true);
-    }
-  }
+			setShowCart(true);
+		}
+	}
 
 	return (
 		<Container>
@@ -95,7 +95,7 @@ const Container = styled.header`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-  gap: 10px;
+	gap: 10px;
 	padding: 0 50px;
 	position: fixed;
 	top: 0;

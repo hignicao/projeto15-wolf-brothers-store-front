@@ -33,10 +33,7 @@ function App() {
 						<Route path="/signup" element={<RegistrationPage />} />
 						<Route path="/checkout" element={<ChekouPage />} />
 						<Route path="/user" element={<UserPage />} />
-            <Route
-              path="/products/category/:category"
-              element={<ProductsByCategoryPage />}
-            />
+						<Route path="/products/category/:category" element={<ProductsByCategoryPage />} />
 					</Routes>
 				</BrowserRouter>
 			</StatesContext.Provider>

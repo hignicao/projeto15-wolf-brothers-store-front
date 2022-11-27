@@ -9,7 +9,7 @@ export default function ProductsByCategoryPage() {
 	const [products, setProducts] = useState(null);
 	const { category } = useParams();
 
-  useEffect(() => {
+	useEffect(() => {
 		api
 			.getProductsByCategory(category)
 			.then((res) => {
