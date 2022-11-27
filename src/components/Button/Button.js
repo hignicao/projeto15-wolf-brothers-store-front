@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const Button = styled.button`
+  font-family: "Lora", serif;
   width:${props=>props.width};
   height: ${props=>props.height};
   border: 1px solid black;
