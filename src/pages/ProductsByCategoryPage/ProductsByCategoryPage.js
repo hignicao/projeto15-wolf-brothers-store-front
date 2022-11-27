@@ -8,8 +8,8 @@ import { useParams } from "react-router-dom";
 export default function ProductsByCategoryPage() {
 	const [products, setProducts] = useState(null);
 	const { category } = useParams();
-	console.log(category);
-	useEffect(() => {
+
+  useEffect(() => {
 		api
 			.getProductsByCategory(category)
 			.then((res) => {
