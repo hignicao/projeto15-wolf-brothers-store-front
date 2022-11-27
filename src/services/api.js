@@ -50,6 +50,11 @@ function postPurchaseCompletion(body, token) {
   const promise = axios.post(`${BASE_URL}/checkout`, body, config);
   return promise;
 }
+
+function getProductsByCategory(category) {
+  const promise = axios.get(`${BASE_URL}/products/category/${category}}`);
+  return promise;
+}
 const api = {
   createConfig,
   getProducts,
@@ -61,6 +66,7 @@ const api = {
   getCartProducts,
   deleCartProduct,
   postPurchaseCompletion,
+  getProductsByCategory,
 };
 
 export default api;

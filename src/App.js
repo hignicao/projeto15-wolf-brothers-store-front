@@ -11,6 +11,7 @@ import StatesContext from "./providers/StatesContext";
 import { useState } from "react";
 import BlackScreen from "./components/BlackScreen/BlackScreen";
 import ChekouPage from "./pages/CheckoutPage/CheckoutPage";
+import ProductsByCategoryPage from "./pages/ProductsByCategoryPage/ProductsByCategoryPage";
 
 function App() {
   const [showResult, setShowResult] = useState(false);
@@ -35,6 +36,10 @@ function App() {
             <Route path="/signin" element={<LoginPage />} />
             <Route path="/signup" element={<RegistrationPage />} />
             <Route path="/checkout" element={<ChekouPage />} />
+            <Route
+              path="/products/category"
+              element={<ProductsByCategoryPage />}
+            />
           </Routes>
         </BrowserRouter>
       </StatesContext.Provider>

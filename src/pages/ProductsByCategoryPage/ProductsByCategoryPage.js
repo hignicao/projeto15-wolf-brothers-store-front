@@ -1,20 +1,19 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Loader from "../../components/Loader/Loader";
-
 import api from "../../services/api";
-import ImageSlider from "./ImageSlider";
 import Product from "../../components/Product/Product";
+import { useParams } from "react-router-dom";
 
-export default function HomePage() {
+export default function ProductsByCategoryPage() {
   const [products, setProducts] = useState(null);
-
+  const { category } = useParams();
   useEffect(() => {
     api
-      .getProducts()
+      .getProductsByCategory(category)
       .then((res) => {
         console.log(res);
-        setProducts(res.data.products);
+        setProducts(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -31,9 +30,6 @@ export default function HomePage() {
 
   return (
     <Container>
-      <div>
-        <ImageSlider />
-      </div>
       <p>OUR PRODUCTS</p>
       <ProductsContainer>
         {products.map((product) => (

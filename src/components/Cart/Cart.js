@@ -31,7 +31,8 @@ export default function Cart() {
       Swal.fire({
         position: "center",
         icon: "success",
-        title: "Product successfully deleted ",
+        title: "Deleted",
+        text: "Product successfully deleted",
         showConfirmButton: false,
         timer: 1500,
       });
