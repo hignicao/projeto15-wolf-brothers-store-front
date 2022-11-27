@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { BsCart4 } from "react-icons/bs";
 import StyledLink from "../StyledLink/StyledLink";
 
-export default function Product({ imgURL, name, price, id, type }) {
+export default function Product({ imgURL, name, price, id}) {
 	return (
 		<StyledLink to={`/product/${id}`}>
 			<ProductContainer>

@@ -5,23 +5,41 @@ export default function SubProducts({ gender }) {
   if (gender === "women") {
     return (
       <Container>
-        <li>OVERALLS</li>
-        <li>COATS</li>
-        <li>DRESSES</li>
-        <li>T-SHIRTS</li>
+        <StyledLink to="/products/category/OVERALLS">
+          <li>OVERALLS</li>
+        </StyledLink>
+        <StyledLink to="/products/category/COATS">
+          <li>COATS</li>
+        </StyledLink>
+        <StyledLink to="/products/category/DRESSES">
+          <li>DRESSES</li>
+        </StyledLink>
+        <StyledLink to="/products/category/T-SHIRTS">
+          <li>T-SHIRTS</li>
+        </StyledLink>
+        <StyledLink to="/products/category/ACCESSORIES">
+          <li>ACCESSORIES</li>
+        </StyledLink>
       </Container>
     );
   } else if (gender === "men") {
     return (
       <Container>
-        <StyledLink to="/signin">
-          <li>JEAN</li>
+        <StyledLink to="/products/category/JEANS">
+          <li>JEANS</li>
         </StyledLink>
-
-        <li>POLO</li>
-        <li>BLAZER</li>
-        <li>T-SHIRTS</li>
-        <li>ACCESSORIES</li>
+        <StyledLink to="/products/category/POLO">
+          <li>POLO</li>
+        </StyledLink>
+        <StyledLink to="/products/category/BLAZER">
+          <li>BLAZER</li>
+        </StyledLink>
+        <StyledLink to="/products/category/T-SHIRTS">
+          <li>T-SHIRTS</li>
+        </StyledLink>
+        <StyledLink to="/products/category/ACCESSORIES">
+          <li>ACCESSORIES</li>
+        </StyledLink>
       </Container>
     );
   }
