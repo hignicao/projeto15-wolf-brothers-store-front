@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 export default function ProductsByCategoryPage() {
   const [products, setProducts] = useState(null);
   const { category } = useParams();
+  console.log(category);
   useEffect(() => {
     api
       .getProductsByCategory(category)
@@ -30,7 +31,7 @@ export default function ProductsByCategoryPage() {
 
   return (
     <Container>
-      <p>OUR PRODUCTS</p>
+      <p>{category}</p>
       <ProductsContainer>
         {products.map((product) => (
           <Product
@@ -39,7 +40,6 @@ export default function ProductsByCategoryPage() {
             name={product.name}
             price={product.price}
             id={product._id}
-            type={product.type}
           />
         ))}
       </ProductsContainer>

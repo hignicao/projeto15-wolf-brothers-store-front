@@ -52,7 +52,7 @@ function postPurchaseCompletion(body, token) {
 }
 
 function getProductsByCategory(category) {
-  const promise = axios.get(`${BASE_URL}/products/category/${category}}`);
+  const promise = axios.get(`${BASE_URL}/products/category/${category}`);
   return promise;
 }
 const api = {
