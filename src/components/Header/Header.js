@@ -153,6 +153,7 @@ const ShowList = styled.span`
 	height: 80px;
 	display: flex;
 	align-items: center;
+	cursor: pointer;
 	ul {
 		display: none;
 		:hover {

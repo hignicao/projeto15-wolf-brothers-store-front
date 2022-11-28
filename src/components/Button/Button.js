@@ -14,6 +14,7 @@ const Button = styled.button`
 	align-items: center;
 	justify-content: space-around;
 	cursor: pointer;
+	margin-bottom: 3px;
 	svg {
 		font-size: 25px;
 		color: #ffffff;

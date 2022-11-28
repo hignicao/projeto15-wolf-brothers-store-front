@@ -51,7 +51,7 @@ function deleCartProduct(id, token) {
 
 function postPurchaseCompletion(body, token) {
 	const config = createConfig(token);
-	const promise = axios.post(`http://localhost:5000/checkout`, body, config);
+	const promise = axios.post(`${BASE_URL}/checkout`, body, config);
 	return promise;
 }
 
@@ -62,7 +62,7 @@ function getPurchaseHistory(token) {
 }
 
 function getProductsByCategory(gender,category) {
-	const promise = axios.get(`http://localhost:5000/products/${gender}/${category}`);
+	const promise = axios.get(`${BASE_URL}/products/${gender}/${category}`);
 	return promise;
 }
 
