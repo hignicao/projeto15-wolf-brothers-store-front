@@ -5,7 +5,6 @@ import api from "../../services/api";
 import ImageSlider from "./ImageSlider";
 import Product from "../../components/Product/Product";
 import { UserContext } from "../../providers/UserData";
-import Button from "../../components/Button/Button";
 import StyledLink from "../../components/StyledLink/StyledLink";
 
 export default function HomePage() {
@@ -60,9 +59,9 @@ export default function HomePage() {
         ))}
       </ProductsContainer>
       {products.length < totalProducts && (
-        <Button width={"200px"} height={"50px"} onClick={loadMore}>
+        <ButtonLoadMore onClick={loadMore}>
           Load more
-        </Button>
+        </ButtonLoadMore>
       )}
     </Container>
   );
@@ -97,3 +96,19 @@ const ProductsContainer = styled.section`
 	gap: 50px;
 	overflow: hidden;
 `;
+
+const ButtonLoadMore = styled.button`
+  width: 200px;
+  margin-bottom: 40px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	font-size: 16px;
+	padding: 12px;
+	border: none;
+	color: #ffffff;
+	background-color: #000000;
+	font-family: "Lora", serif;
+	cursor: pointer;
+`
