@@ -105,6 +105,7 @@ const Form = styled.form`
 	flex-direction: column;
 	gap: 12px;
 	input {
+		background-color: #E4E4E4;
 		font-family: "Lora", serif;
 		padding: 15px;
 		border: none;
@@ -126,6 +127,7 @@ const ButtonItem = styled.button`
 	color: #ffffff;
 	background-color: #000000;
 	font-family: "Lora", serif;
+	cursor: pointer;
 `;
 
 const LinkText = styled(Link)`

@@ -6,6 +6,7 @@ import ImageSlider from "./ImageSlider";
 import Product from "../../components/Product/Product";
 import { UserContext } from "../../providers/UserData";
 import Button from "../../components/Button/Button";
+import StyledLink from "../../components/StyledLink/StyledLink";
 
 export default function HomePage() {
   const { userData } = useContext(UserContext);
@@ -41,9 +42,9 @@ export default function HomePage() {
 
   return (
     <Container>
-      <div>
+      <StyledLink to={"/"}>
         <ImageSlider />
-      </div>
+      </StyledLink>
       <p>OUR PRODUCTS</p>
       <ProductsContainer>
         {products.map((product) => (

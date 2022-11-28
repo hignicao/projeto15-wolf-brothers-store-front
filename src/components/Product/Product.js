@@ -76,6 +76,7 @@ const ProductContainer = styled.div`
 		color: #ffffff;
 		font-size: 18px;
 		font-family: "Lora", serif;
+		cursor: pointer;
 	}
 	img {
 		margin-bottom: 35px;
