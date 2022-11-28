@@ -77,7 +77,7 @@ export default function RegistrationPage() {
           />
 
           <ButtonItem disabled={disabled} type="submit">{(disabled ? loader : "SIGN-UP")}</ButtonItem>
-        </Form>ALREADY HAVE AN ACCOUNT? <LinkText to={"/"}>LOGIN HERE</LinkText>
+        </Form>ALREADY HAVE AN ACCOUNT? <LinkText to={"/signin"}>LOGIN HERE</LinkText>
 			</RegistrationPageContainer>
 		</RegistrationPageScreen>
 	);
@@ -110,6 +110,7 @@ const Form = styled.form`
 	flex-direction: column;
 	gap: 12px;
 	input {
+		background-color: #E4E4E4;
 		font-family: "Lora", serif;
 		padding: 15px;
 		border: none;
@@ -131,6 +132,7 @@ const ButtonItem = styled.button`
 	color: #ffffff;
 	background-color: #000000;
 	font-family: "Lora", serif;
+	cursor: pointer;
 `;
 
 const LinkText = styled(Link)`
