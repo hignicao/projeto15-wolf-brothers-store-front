@@ -3,9 +3,9 @@ import React from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from "styled-components";
-import banner1 from "../../assets/images/banner1.jpg";
-import banner2 from "../../assets/images/banner2.jpg";
-import banner3 from "../../assets/images/banner3.jpg";
+import banner1 from "../../assets/images/banner1.png";
+import banner2 from "../../assets/images/banner2.png";
+import banner3 from "../../assets/images/banner3.png";
 
 export default function ImageSlider() {
 	const settings = {
@@ -29,11 +29,11 @@ export default function ImageSlider() {
 				</div>
 				 <div>
 					<img src={banner2} alt="banner12" />
-				</div> 
+				</div>
 				<div>
 					<img src={banner3} alt="banner12" />
 				</div>
-		
+
 			</Slider>
 		</SliderContainer>
 	);
@@ -47,7 +47,7 @@ const SliderContainer = styled.section`
 		img {
 			width: 100%;
 			height: 100%;
-			object-fit: fill;
+			object-fit: cover;
 		}
 	}
 `;
