@@ -15,30 +15,38 @@ import UserPage from "./pages/UserPage/UserPage";
 import ProductsByCategoryPage from "./pages/ProductsByCategoryPage/ProductsByCategoryPage";
 
 function App() {
-	const [showResult, setShowResult] = useState(false);
-	const [showCart, setShowCart] = useState(false);
+  const [showResult, setShowResult] = useState(false);
+  const [showCart, setShowCart] = useState(false);
 
-	return (
-		<UserProvider>
-			<StatesContext.Provider value={{ showCart, setShowCart, showResult, setShowResult }}>
-				<GlobalStyle />
-				<BrowserRouter>
-					{showCart && <Cart />}
-					{showResult && <BlackScreen />}
-					<Header />
-					<Routes>
-						<Route path="/" element={<HomePage />} />
-						<Route path="/product/:productId" element={<SelectedProductPage />} />
-						<Route path="/signin" element={<LoginPage />} />
-						<Route path="/signup" element={<RegistrationPage />} />
-						<Route path="/checkout" element={<ChekouPage />} />
-						<Route path="/user" element={<UserPage />} />
-						<Route path="/products/:gender/:category" element={<ProductsByCategoryPage />} />
-					</Routes>
-				</BrowserRouter>
-			</StatesContext.Provider>
-		</UserProvider>
-	);
+  return (
+    <UserProvider>
+      <StatesContext.Provider
+        value={{ showCart, setShowCart, showResult, setShowResult }}
+      >
+        <GlobalStyle />
+        <BrowserRouter>
+          {showCart && <Cart />}
+          {showResult && <BlackScreen />}
+          <Header />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route
+              path="/product/:productId"
+              element={<SelectedProductPage />}
+            />
+            <Route path="/signin" element={<LoginPage />} />
+            <Route path="/signup" element={<RegistrationPage />} />
+            <Route path="/checkout" element={<ChekouPage />} />
+            <Route path="/user" element={<UserPage />} />
+            <Route
+              path="/products/:gender/:category"
+              element={<ProductsByCategoryPage />}
+            />
+          </Routes>
+        </BrowserRouter>
+      </StatesContext.Provider>
+    </UserProvider>
+  );
 }
 
 export default App;

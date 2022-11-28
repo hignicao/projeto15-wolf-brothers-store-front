@@ -5,48 +5,48 @@ import api from "../../services/api";
 import ImageSlider from "./ImageSlider";
 import Product from "../../components/Product/Product";
 import { UserContext } from "../../providers/UserData";
-import Pagination from "../../components/Pagination/Pagination";
+import Button from "../../components/Button/Button";
 
 export default function HomePage() {
-	const { userData } = useContext(UserContext);
-	const [products, setProducts] = useState(null);
-	const [currentPage, setCurrentPage] = useState(1);
-	const [postsPerPage] = useState(9);
+  const { userData } = useContext(UserContext);
+  const [products, setProducts] = useState(null);
+  const [page, setPage] = useState(1);
+  const [totalProducts, setTotalProducts] = useState(undefined);
+  useEffect(() => {
+    api
+      .getProducts(page)
+      .then((res) => {
+        if (products === null) {
+          setProducts(res.data.products);
+          setTotalProducts(res.data.totalProducts);
+        } else if (products !== null) {
+          setProducts([...products, ...res.data.products]);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [page]);
 
-	useEffect(() => {
-		api
-			.getProducts()
-			.then((res) => {
-				setProducts(res.data.products);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	}, []);
+  function loadMore() {
+    setPage(page + 1);
+  }
+  if (!products) {
+    return (
+      <ContainerEmpty>
+        <Loader />
+      </ContainerEmpty>
+    );
+  }
 
-	if (!products) {
-		return (
-			<ContainerEmpty>
-				<Loader />
-			</ContainerEmpty>
-		);
-	}
-	const indexOfLastPost = currentPage * postsPerPage;
-	const indexOfFirstPost = indexOfLastPost - postsPerPage;
-	const currentPosts = products.slice(indexOfFirstPost, indexOfLastPost);
-
-	function paginate(pageNumber) {
-		setCurrentPage(pageNumber);
-	}
-
-	return (
-		<Container>
-			<div>
-				<ImageSlider />
-			</div>
-			<p>OUR PRODUCTS</p>
-			<ProductsContainer>
-        {currentPosts.map((product) => (
+  return (
+    <Container>
+      <div>
+        <ImageSlider />
+      </div>
+      <p>OUR PRODUCTS</p>
+      <ProductsContainer>
+        {products.map((product) => (
           <Product
             key={product._id}
             imgURL={product.imgURL}
@@ -58,9 +58,13 @@ export default function HomePage() {
           />
         ))}
       </ProductsContainer>
-			<Pagination postsPerPage={postsPerPage} totalPosts={products.length} paginate={paginate} />
-		</Container>
-	);
+      {products.length < totalProducts && (
+        <Button width={"200px"} height={"50px"} onClick={loadMore}>
+          Load more
+        </Button>
+      )}
+    </Container>
+  );
 }
 
 const ContainerEmpty = styled.div`

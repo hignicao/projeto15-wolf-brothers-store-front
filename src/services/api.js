@@ -6,8 +6,8 @@ function createConfig(token) {
 	return config;
 }
 
-function getProducts() {
-	const promise = axios.get(`${BASE_URL}/products`);
+function getProducts(page) {
+	const promise = axios.get(`${BASE_URL}/products?page=${page}`);
 	return promise;
 }
 

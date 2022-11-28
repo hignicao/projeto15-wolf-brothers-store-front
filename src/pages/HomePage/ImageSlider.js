@@ -27,12 +27,13 @@ export default function ImageSlider() {
 				<div>
 					<img src={banner1} alt="banner12" />
 				</div>
-				<div>
+				 <div>
 					<img src={banner2} alt="banner12" />
-				</div>
+				</div> 
 				<div>
 					<img src={banner3} alt="banner12" />
 				</div>
+		
 			</Slider>
 		</SliderContainer>
 	);
@@ -42,11 +43,11 @@ const SliderContainer = styled.section`
 	width: 100vw;
 	div {
 		width: 100vw;
-		height: 200px;
+		height: 500px;
 		img {
 			width: 100%;
 			height: 100%;
-			object-fit: cover;
+			object-fit: fill;
 		}
 	}
 `;
