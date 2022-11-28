@@ -61,7 +61,7 @@ function getPurchaseHistory(token) {
 	return promise;
 }
 
-function getProductsByCategory(gender,category) {
+function getProductsByCategory(gender, category) {
 	const promise = axios.get(`${BASE_URL}/products/${gender}/${category}`);
 	return promise;
 }

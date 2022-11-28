@@ -5,7 +5,6 @@ import api from "../../services/api";
 import ImageSlider from "./ImageSlider";
 import Product from "../../components/Product/Product";
 import { UserContext } from "../../providers/UserData";
-import LoginPage from "../LoginPage/LoginPage";
 import Button from "../../components/Button/Button";
 
 export default function HomePage() {
@@ -69,31 +68,31 @@ export default function HomePage() {
 }
 
 const ContainerEmpty = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 40vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-top: 40vh;
 `;
 
 const Container = styled.main`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  p {
-    font-size: 40px;
-    font-style: normal;
-    margin: 70px 0 40px 0;
-  }
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	p {
+		font-size: 40px;
+		font-style: normal;
+		margin: 70px 0 40px 0;
+	}
 `;
 
 const ProductsContainer = styled.section`
-  padding: 20px;
-  margin-bottom: 30px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 50px;
-  overflow: hidden;
+	padding: 20px;
+	margin-bottom: 30px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 50px;
+	overflow: hidden;
 `;
