@@ -3,6 +3,7 @@ import Loader from "../Loader/Loader";
 import StyledLink from "../StyledLink/StyledLink";
 
 export default function ProductsFiltered({ filteredItens }) {
+
 	if (!filteredItens) {
 		return (
 			<Container filteredItens={filteredItens}>
@@ -16,6 +17,7 @@ export default function ProductsFiltered({ filteredItens }) {
 			</Container>
 		);
 	}
+
 	return (
 		<Container filteredItens={filteredItens}>
 			{filteredItens.map((product) => (
