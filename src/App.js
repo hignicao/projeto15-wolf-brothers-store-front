@@ -8,7 +8,7 @@ import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import { UserProvider } from "./providers/UserData";
 import Cart from "./components/Cart/Cart";
 import StatesContext from "./providers/StatesContext";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import BlackScreen from "./components/BlackScreen/BlackScreen";
 import ChekouPage from "./pages/CheckoutPage/CheckoutPage";
 import UserPage from "./pages/UserPage/UserPage";
@@ -17,7 +17,7 @@ import ProductsByCategoryPage from "./pages/ProductsByCategoryPage/ProductsByCat
 function App() {
   const [showResult, setShowResult] = useState(false);
   const [showCart, setShowCart] = useState(false);
-  
+
   return (
     <UserProvider>
       <StatesContext.Provider
