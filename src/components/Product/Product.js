@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import api from "../../services/api";
 
 export default function Product({ imgURL, name, price, id, userData }) {
+
 	async function addProductToCart() {
 		if (!userData) {
 			Swal.fire({

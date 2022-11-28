@@ -8,44 +8,44 @@ import { UserContext } from "../../providers/UserData";
 import Pagination from "../../components/Pagination/Pagination";
 
 export default function HomePage() {
-  const { userData } = useContext(UserContext);
-  const [products, setProducts] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(10);
+	const { userData } = useContext(UserContext);
+	const [products, setProducts] = useState(null);
+	const [currentPage, setCurrentPage] = useState(1);
+	const [postsPerPage] = useState(10);
 
-  useEffect(() => {
-    api
-      .getProducts()
-      .then((res) => {
-        setProducts(res.data.products);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+	useEffect(() => {
+		api
+			.getProducts()
+			.then((res) => {
+				setProducts(res.data.products);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}, []);
 
-  if (!products) {
-    return (
-      <ContainerEmpty>
-        <Loader />
-      </ContainerEmpty>
-    );
-  }
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = products.slice(indexOfFirstPost, indexOfLastPost);
+	if (!products) {
+		return (
+			<ContainerEmpty>
+				<Loader />
+			</ContainerEmpty>
+		);
+	}
+	const indexOfLastPost = currentPage * postsPerPage;
+	const indexOfFirstPost = indexOfLastPost - postsPerPage;
+	const currentPosts = products.slice(indexOfFirstPost, indexOfLastPost);
 
-  function paginate(pageNumber) {
-    setCurrentPage(pageNumber);
-  }
+	function paginate(pageNumber) {
+		setCurrentPage(pageNumber);
+	}
 
-  return (
-    <Container>
-      <div>
-        <ImageSlider />
-      </div>
-      <p>OUR PRODUCTS</p>
-      <ProductsContainer>
+	return (
+		<Container>
+			<div>
+				<ImageSlider />
+			</div>
+			<p>OUR PRODUCTS</p>
+			<ProductsContainer>
         {currentPosts.map((product) => (
           <Product
             key={product._id}
@@ -58,41 +58,37 @@ export default function HomePage() {
           />
         ))}
       </ProductsContainer>
-      <Pagination
-        postsPerPage={postsPerPage}
-        totalPosts={products.length}
-        paginate={paginate}
-      />
-    </Container>
-  );
+			<Pagination postsPerPage={postsPerPage} totalPosts={products.length} paginate={paginate} />
+		</Container>
+	);
 }
 
 const ContainerEmpty = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 40vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-top: 40vh;
 `;
 
 const Container = styled.main`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  p {
-    font-size: 40px;
-    font-style: normal;
-    margin: 70px 0 40px 0;
-  }
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	p {
+		font-size: 40px;
+		font-style: normal;
+		margin: 70px 0 40px 0;
+	}
 `;
 
 const ProductsContainer = styled.section`
-  padding: 20px;
-  margin-bottom: 30px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 50px;
-  overflow: hidden;
+	padding: 20px;
+	margin-bottom: 30px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 50px;
+	overflow: hidden;
 `;

@@ -8,11 +8,11 @@ import { useParams } from "react-router-dom";
 export default function ProductsByCategoryPage() {
 	const [products, setProducts] = useState(null);
 	const { category, gender } = useParams();
-  
+
 	useEffect(() => {
-		console.log('entreeei')
+		console.log("entreeei");
 		api
-			.getProductsByCategory(gender,category)
+			.getProductsByCategory(gender, category)
 			.then((res) => {
 				console.log(res);
 				setProducts(res.data);
@@ -20,7 +20,7 @@ export default function ProductsByCategoryPage() {
 			.catch((err) => {
 				console.log(err.response);
 			});
-	}, [category,gender]);
+	}, [category, gender]);
 
 	if (!products) {
 		return (
