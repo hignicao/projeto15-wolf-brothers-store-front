@@ -153,6 +153,7 @@ const Middle = styled.div`
 	gap: 15px;
 	width: 100%;
 	margin-top: 50px;
+	overflow-y: auto;
 `;
 
 const ProductBox = styled.div`

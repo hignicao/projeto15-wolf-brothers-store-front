@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import Loader from "../../components/Loader/Loader";
 import api from "../../services/api";
 import Product from "../../components/Product/Product";
 import { useParams } from "react-router-dom";
+import { UserContext } from "../../providers/UserData";
 
 export default function ProductsByCategoryPage() {
   const [products, setProducts] = useState(null);
   const { category, gender } = useParams();
-
+  const { userData } = useContext(UserContext);
   useEffect(() => {
     api
       .getProductsByCategory(gender, category)
@@ -38,6 +39,7 @@ export default function ProductsByCategoryPage() {
             name={product.name}
             price={product.price}
             id={product._id}
+            userData={userData}
           />
         ))}
       </ProductsContainer>
