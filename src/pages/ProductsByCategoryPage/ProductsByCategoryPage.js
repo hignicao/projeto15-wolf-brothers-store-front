@@ -7,19 +7,20 @@ import { useParams } from "react-router-dom";
 
 export default function ProductsByCategoryPage() {
 	const [products, setProducts] = useState(null);
-	const { category } = useParams();
-
+	const { category, gender } = useParams();
+  
 	useEffect(() => {
+		console.log('entreeei')
 		api
-			.getProductsByCategory(category)
+			.getProductsByCategory(gender,category)
 			.then((res) => {
 				console.log(res);
 				setProducts(res.data);
 			})
 			.catch((err) => {
-				console.log(err);
+				console.log(err.response);
 			});
-	}, [category]);
+	}, [category,gender]);
 
 	if (!products) {
 		return (

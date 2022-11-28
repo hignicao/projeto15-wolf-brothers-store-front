@@ -50,7 +50,12 @@ const GlobalStyle = createGlobalStyle`
 	*{
 			box-sizing: border-box;
 	}
-
+    body{
+		overflow-x:hidden;
+		svg{
+			cursor:pointer;
+		}
+	}
 `;
 
 export default GlobalStyle;

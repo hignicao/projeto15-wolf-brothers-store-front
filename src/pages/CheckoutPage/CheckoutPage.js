@@ -30,7 +30,6 @@ export default function ChekouPage() {
 		setDisabled(true);
 
 		const body = {
-			products: cartProducts,
 			purchasePrice: Number(purchaseValue.toFixed(2)),
 			checkoutForm,
 		};
@@ -84,29 +83,29 @@ export default function ChekouPage() {
 					</p>
 				</Summary>
 				<Form onSubmit={completePurchase}>
-				<Delivery>
+					<Delivery>
 						<span>Delivery Information</span>
 						<div>
-						  <input
-                required
+							<input
+								required
 								disabled={disabled}
 								name="address"
 								value={checkoutForm.address}
-                type="text"
-                placeholder="Street Address"
+								type="text"
+								placeholder="Street Address"
 								onChange={changeFormData}
-              />
-              <div>
-                <input
-                  required
+							/>
+							<div>
+								<input
+									required
 									disabled={disabled}
 									name="city"
 									value={checkoutForm.city}
-                  type="text"
-                  placeholder="City"
+									type="text"
+									placeholder="City"
 									onChange={changeFormData}
-                />
-                <input
+								/>
+								<input
 									required
 									disabled={disabled}
 									name="state"
@@ -114,17 +113,17 @@ export default function ChekouPage() {
 									type="text"
 									placeholder="State"
 									onChange={changeFormData}
-                />
+								/>
 								<input
-                  required
+									required
 									disabled={disabled}
 									name="zipCode"
 									value={checkoutForm.zipCode}
-                  type="number"
-                  placeholder="Zip Code"
+									type="number"
+									placeholder="Zip Code"
 									onChange={changeFormData}
-                />
-              </div>
+								/>
+							</div>
 						</div>
 					</Delivery>
 					<PaymentMethod>
