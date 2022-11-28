@@ -7,7 +7,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
 	for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
 		pageNumbers.push(i);
 	}
-  
+
 	return (
 		<nav>
 			<Container>
@@ -23,12 +23,14 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
 
 const Container = styled.ul`
 	display: flex;
+	gap: 5px;
+	margin-bottom: 40px;
 	button {
-		margin-right: 5px;
 		:hover {
 			background-color: white;
 			color: black;
 			font-weight: bold;
+			border: none;
 		}
 	}
 `;

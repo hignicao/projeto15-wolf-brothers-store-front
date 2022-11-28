@@ -11,7 +11,7 @@ export default function HomePage() {
 	const { userData } = useContext(UserContext);
 	const [products, setProducts] = useState(null);
 	const [currentPage, setCurrentPage] = useState(1);
-	const [postsPerPage] = useState(10);
+	const [postsPerPage] = useState(9);
 
 	useEffect(() => {
 		api
