@@ -10,15 +10,13 @@ export default function ProductsByCategoryPage() {
 	const { category, gender } = useParams();
 
 	useEffect(() => {
-		console.log("entreeei");
 		api
 			.getProductsByCategory(gender, category)
 			.then((res) => {
-				console.log(res);
 				setProducts(res.data);
 			})
 			.catch((err) => {
-				console.log(err.response);
+				console.log(err);
 			});
 	}, [category, gender]);
 
